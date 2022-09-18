@@ -27,8 +27,8 @@ cam = Camera()
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
 
-ultrasonic_front = UltrasonicSensor("D3", threshold_distance=0.75)
-ultrasonic_rear = UltrasonicSensor("D2", threshold_distance=0.75)
+ultrasonic_front = UltrasonicSensor("D3", threshold_distance=0.2)
+ultrasonic_rear = UltrasonicSensor("D2", threshold_distance=0.2)
 
 miniscreen = Miniscreen()
 
@@ -53,19 +53,21 @@ while True:
          
     time_now = time.strftime("%Y%m%d-%H%M%S")
 
-    if float(ultrasonic_front.distance) > 0.5: #inital distance check
+    if round(ultrasonic_front.distance, 2) > 0.75: #inital distance check
+        print ("distance front: ", round(ultrasonic_front.distance, 2))
         miniscreen.display_multiline_text('drive forward', font_size=14)
         motor_right.forward(target_speed=drivespeed)
         motor_left.forward(target_speed=drivespeed)
 
-    elif float(ultrasonic_front.distance) < 0.5: #find obstacle on the way
+    elif round(ultrasonic_front.distance, 2) < 0.75: #find obstacle on the way
          miniscreen.display_multiline_text('check distance', font_size=14)
          motor_right.stop()
          motor_left.stop()
 
          servo_x.target_angle = 0
-         servo_y.target_angle = -35
+         servo_y.target_angle = -25
          sleep(2)
+         miniscreen.display_multiline_text('take a photo', font_size=14)
          image = cam.get_frame()
          image.save("pictures/pitop_"+time_now+".jpg")
          sleep(2)
@@ -73,10 +75,12 @@ while True:
 
          servo_x.target_angle = -45
          sleep(4)
-         distance_left = float(ultrasonic_front.distance)
+         distance_left = round(ultrasonic_front.distance, 2)
+         print ("distance right: ", distance_left)
          servo_x.target_angle = 45
          sleep(8)
-         distance_right = float(ultrasonic_front.distance)
+         distance_right = round(ultrasonic_front.distance, 2)
+         print("distance left: ", distance_right)
          servo_x.target_angle = 0
 
          if distance_left < 0.5 and distance_right < 0.5: #drive backward and tank turn
@@ -89,11 +93,11 @@ while True:
             sleep(1.5)
 
          elif distance_left > distance_right:
-            miniscreen.display_multiline_text('drive left', font_size=14)
+            miniscreen.display_multiline_text('drive right', font_size=14)
             motor_left.forward(target_speed=turnspeed)
         
          elif distance_left < distance_right:
-            miniscreen.display_multiline_text('drive right', font_size=14)
+            miniscreen.display_multiline_text('drive left', font_size=14)
             motor_right.forward(target_speed=turnspeed)
         
          sleep(2)
