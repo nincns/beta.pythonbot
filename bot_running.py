@@ -71,10 +71,10 @@ while True:
          sleep(2)
          servo_y.target_angle = 25
 
-         servo_x.target_angle = -75
+         servo_x.target_angle = -45
          sleep(4)
          distance_left = float(ultrasonic_front.distance)
-         servo_x.target_angle = 75
+         servo_x.target_angle = 45
          sleep(8)
          distance_right = float(ultrasonic_front.distance)
          servo_x.target_angle = 0
