@@ -27,8 +27,8 @@ cam = Camera()
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
 
-ultrasonic_front = UltrasonicSensor("D3", threshold_distance=0.2)
-ultrasonic_rear = UltrasonicSensor("D2", threshold_distance=0.2)
+ultrasonic_front = UltrasonicSensor("D3")
+ultrasonic_rear = UltrasonicSensor("D2")
 
 miniscreen = Miniscreen()
 
@@ -54,7 +54,7 @@ while True:
     time_now = time.strftime("%Y%m%d-%H%M%S")
 
     if round(ultrasonic_front.distance, 2) > 0.75: #inital distance check
-        print ("distance front: ", round(ultrasonic_front.distance, 2))
+        print ("distance front: ", round(ultrasonic_front.distance.real, 2))
         miniscreen.display_multiline_text('drive forward', font_size=14)
         motor_right.forward(target_speed=drivespeed)
         motor_left.forward(target_speed=drivespeed)
@@ -75,11 +75,11 @@ while True:
 
          servo_x.target_angle = -45
          sleep(4)
-         distance_left = round(ultrasonic_front.distance, 2)
+         distance_left = round(ultrasonic_front.distance.real, 2)
          print ("distance right: ", distance_left)
          servo_x.target_angle = 45
          sleep(8)
-         distance_right = round(ultrasonic_front.distance, 2)
+         distance_right = round(ultrasonic_front.distance.real, 2)
          print("distance left: ", distance_right)
          servo_x.target_angle = 0
 

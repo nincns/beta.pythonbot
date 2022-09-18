@@ -1,14 +1,36 @@
-from multiprocessing import Process
+from threading import Thread
+import time
 
-def methodA():
-    while TRUE:
-        do something
+class PrintA(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+        self.running = True
 
-def methodB():
-    while TRUE:
-        do something
+    def run(self):
+        while self.running:
+            print('A')
+            time.sleep(1)
+    def stop(self):
+        self.running = False
 
-p=Process(target=methodA())
-p.start()
-p1=Process(target=methodB())
-p1.start()
+class PrintB(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+        self.running = True
+    def run(self):
+        while self.running:
+            print('B')
+            time.sleep(2)
+    def stop(self):
+        self.running = False
+
+a = PrintA()
+b = PrintB()
+
+a.start()
+b.start()
+
+time.sleep(10)
+a.stop()
+time.sleep(10)
+b.stop()
