@@ -1,6 +1,6 @@
 # Import modules
 from time import sleep
-from pitop import ServoMotor
+from pitop import ServoMotor, ServoMotorSetting
 from pitop import UltrasonicSensor
 from pitop import Button
 from pitop import LightSensor
@@ -17,36 +17,30 @@ import time
 servo_x = ServoMotor("S0")
 servo_y = ServoMotor("S1")
 button = Button("D1")
-light_sensor = LightSensor("A1")
-sound_sensor = SoundSensor("A2")
+light_sensor = LightSensor("A0")
+sound_sensor = SoundSensor("A1")
 buzzer = Buzzer("D0")
 motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
 motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
 cam = Camera()
+ultrasonic_front = UltrasonicSensor("D2")
+ultrasonic_phalanx = UltrasonicSensor("D3")
+miniscreen = Miniscreen()
 
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
 
-ultrasonic_front = UltrasonicSensor("D3")
-ultrasonic_rear = UltrasonicSensor("D2")
-
-miniscreen = Miniscreen()
-
 #sets servo speed and direction
-global sp
-sp = 100
 
 turnspeed = 0.1
 drivespeed = 0.05
-servo_x.sweep(sp)
-servo_x.sweep(-sp)
 
 servo_x.target_angle = 0
 servo_y.target_angle = 0
 
 while True:
     #start programm
-    servo_y.target_angle = 25
+    servo_y.target_angle = 35
     
     if button.is_pressed is True:
         exit()
@@ -71,15 +65,15 @@ while True:
          image = cam.get_frame()
          image.save("pictures/pitop_"+time_now+".jpg")
          sleep(2)
-         servo_y.target_angle = 25
+         servo_y.target_angle = 35
 
          servo_x.target_angle = -45
          sleep(4)
-         distance_left = round(ultrasonic_front.distance.real, 2)
+         distance_left = round(ultrasonic_phalanx.distance.real, 2)
          print ("distance right: ", distance_left)
          servo_x.target_angle = 45
          sleep(8)
-         distance_right = round(ultrasonic_front.distance.real, 2)
+         distance_right = round(ultrasonic_phalanx.distance.real, 2)
          print("distance left: ", distance_right)
          servo_x.target_angle = 0
 

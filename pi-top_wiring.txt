@@ -3,11 +3,11 @@ M0 Motor rechts
 M3 Motor links
 S0 vertikaler Servo Kamera
 S1 horizontaler Servo Kamera 
-D3 Ultraschallsensor vorne
-D2 Ultraschallsensor hinten
+D3 Ultraschallsensor Phalanx
+D2 Ultraschallsensor vorne
 A0 Sound Sensor
 A1 Light Sensor
 D0 Buzzer
-D1 Button front
+D1 Button
 LED links
 LED rechts
