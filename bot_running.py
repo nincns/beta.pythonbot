@@ -77,7 +77,6 @@ while True:
          servo_x.target_angle = 75
          sleep(8)
          distance_right = float(ultrasonic_front.distance)
-         
          servo_x.target_angle = 0
 
          if distance_left < 0.5 and distance_right < 0.5: #drive backward and tank turn
