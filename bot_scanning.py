@@ -31,23 +31,29 @@ class MoveServoX(Thread):
     def run(self):
         scandirection = "left"
         while self.running: #running process 1
-         if servo_x.current_angle < 90 and scandirection == "left" and self.scan is True:
+         if servo_x.current_angle < 90 and scandirection == "left" and self.move_x is True: #Servo will try start scanning in right direction
             print("left ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
-            servo_x.target_angle = servo_x.current_angle + 1
+            if servo_x.current_angle <= 80: #error handling when something interupt process and angle will not 10, 20 or something will execpt with error servo can not set to 90+ degree same for left direction
+                servo_x.target_angle = servo_x.current_angle + 10
+            elif servo_x.current_angle >= 81:
+                servo_x.target_angle = 90
          elif servo_x.current_angle == 90:
             scandirection = "right"
-         if servo_x.current_angle > -90 and scandirection == "right" and self.scan is True:
+         if servo_x.current_angle > -90 and scandirection == "right" and self.move_x is True:
             print("right ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
-            servo_x.target_angle = servo_x.current_angle - 1
+            if servo_x.current_angle >= -80:
+                servo_x.target_angle = servo_x.current_angle - 10
+            elif servo_x.current_angle <= -81:
+                servo_x.target_angle = -90
          elif servo_x.current_angle == -90:
             scandirection = "left"
-         sleep(0.1)
+         sleep(0.5)
     def stop(self):
         self.running = False
     def pause(self):
-        self.scan = False
+        self.move_x = False
     def resume(self):
-        self.scan = True
+        self.move_x = True
 
 class Scan(Thread):
     def __init__(self):
@@ -56,8 +62,8 @@ class Scan(Thread):
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
-            if round(ultrasonic_front.distance.real, 2) < 0.5:
-                process1.pause()
+            if round(ultrasonic_front.distance.real, 2) < 0.5 and self.scan is True:
+                MoveServoX.pause()
                 servo_x.target_angle = 0
                 servo_y.target_angle = 0
                 sleep(2)
@@ -65,13 +71,11 @@ class Scan(Thread):
                 image.save("pictures/pitop_"+time_now+".jpg")
                 servo_y.target_angle = 25
                 sleep(2)
-                process1.resume()
+                MoveServoX.resume()
             time.sleep(1)
     def stop(self):
         self.running = False
-
-process1 = MoveServoX()
-process2 = Scan()
-
-process1.start()
-process2.start()
+    def pause(self):
+        self.scan = False
+    def resume(self):
+        self.scan = True
