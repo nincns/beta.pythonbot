@@ -20,7 +20,6 @@ cam = Camera()
 servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
 
-
 servo_x.target_angle = 0
 servo_y.target_angle = 0
 
@@ -54,7 +53,6 @@ class Scan(Thread):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
             if round(ultrasonic_front.distance.real, 2) < 0.5:
-                process1.stop()
                 servo_x.target_angle = 0
                 servo_y.target_angle = 25
                 sleep(2)
