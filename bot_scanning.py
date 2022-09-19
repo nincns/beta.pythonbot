@@ -21,22 +21,22 @@ servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
 
 servo_x.target_angle = 0
-servo_y.target_angle = 0
+servo_y.target_angle = 25
 
 class MoveServoX(Thread):
     def __init__(self):
         Thread.__init__(self)
         self.running = True
+        self.scan = True
     def run(self):
-        servo_x.target_angle = 0
         scandirection = "left"
         while self.running: #running process 1
-         if servo_x.current_angle < 90 and scandirection == "left":
+         if servo_x.current_angle < 90 and scandirection == "left" and self.scan is True:
             print("left ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             servo_x.target_angle = servo_x.current_angle + 1
          elif servo_x.current_angle == 90:
             scandirection = "right"
-         if servo_x.current_angle > -90 and scandirection == "right":
+         if servo_x.current_angle > -90 and scandirection == "right" and self.scan is True:
             print("right ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             servo_x.target_angle = servo_x.current_angle - 1
          elif servo_x.current_angle == -90:
@@ -44,6 +44,10 @@ class MoveServoX(Thread):
          sleep(0.1)
     def stop(self):
         self.running = False
+    def pause(self):
+        self.scan = False
+    def resume(self):
+        self.scan = True
 
 class Scan(Thread):
     def __init__(self):
@@ -53,14 +57,15 @@ class Scan(Thread):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
             if round(ultrasonic_front.distance.real, 2) < 0.5:
+                process1.pause()
                 servo_x.target_angle = 0
-                servo_y.target_angle = 25
+                servo_y.target_angle = 0
                 sleep(2)
                 image = cam.get_frame()
                 image.save("pictures/pitop_"+time_now+".jpg")
-                servo_y.target_angle = 0
+                servo_y.target_angle = 25
                 sleep(2)
-                process1.start()
+                process1.resume()
             time.sleep(1)
     def stop(self):
         self.running = False
