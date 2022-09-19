@@ -2,6 +2,8 @@ from time import sleep
 from pitop import ServoMotor, ServoMotorSetting
 from pitop import UltrasonicSensor
 from pitop import Button
+from pitop import SoundSensor
+from pitop import LightSensor
 from threading import Thread
 import time
 
@@ -9,6 +11,8 @@ servo_x = ServoMotor("S0")
 servo_y = ServoMotor("S1")
 ultrasonic_phalanx = UltrasonicSensor("D3")
 button = Button("D1")
+sound_sensor = SoundSensor("A0")
+light_sensor = LightSensor("A1")
 
 servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
@@ -25,12 +29,12 @@ class MoveServoX(Thread):
         scandirection = "left"
         while self.running: #running process 1
          if servo_x.current_angle < 90 and scandirection == "left":
-            print("left ",servo_x.current_angle)
+            print("left ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             servo_x.target_angle = servo_x.current_angle + 1
          elif servo_x.current_angle == 90:
             scandirection = "right"
          if servo_x.current_angle > -90 and scandirection == "right":
-            print("right ",servo_x.current_angle)
+            print("right ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             servo_x.target_angle = servo_x.current_angle - 1
          elif servo_x.current_angle == -90:
             scandirection = "left"
