@@ -1,5 +1,3 @@
-from beta_pythonbot import bot_scanning
+from bot_scanning import MoveServoX 
 
-movex = bot_scanning.MoveServoX()
-
-movex.start()
+MoveServoX.start()
