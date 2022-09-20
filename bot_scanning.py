@@ -8,13 +8,13 @@ from pitop import Camera
 from threading import Thread
 import time
 
-servo_x = ServoMotor("S0")
-servo_y = ServoMotor("S1")
-ultrasonic_phalanx = UltrasonicSensor("D3")
+servo_x = ServoMotor("S2")
+servo_y = ServoMotor("S3")
+ultrasonic_phalanx = UltrasonicSensor("D7")
 ultrasonic_front = UltrasonicSensor("D2")
 button = Button("D1")
-sound_sensor = SoundSensor("A0")
-light_sensor = LightSensor("A1")
+sound_sensor = SoundSensor("A3")
+light_sensor = LightSensor("A2")
 cam = Camera()
 
 servo_settings = ServoMotorSetting()

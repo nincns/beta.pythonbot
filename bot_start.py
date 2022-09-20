@@ -1,3 +1,3 @@
-from bot_scanning import MoveServoX 
+from bot_scanning import MoveServoX, CamScan
 
 MoveServoX.start()
