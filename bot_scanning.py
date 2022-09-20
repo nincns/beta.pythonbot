@@ -70,7 +70,7 @@ class process2(Thread):
                 sleep(2)
                 image = cam.get_frame()
                 image.save("pictures/pitop_"+time_now+".jpg")
-                servo_y.target_angle = 25
+                servo_y.target_angle = -25
                 sleep(2)
                 MoveServoX.resume()
             time.sleep(1)
