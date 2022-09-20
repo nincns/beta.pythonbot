@@ -83,6 +83,3 @@ class process2(Thread):
 
 MoveServoX = process1()
 CamScan = process2()
-
-MoveServoX.start()
-CamScan.start()
