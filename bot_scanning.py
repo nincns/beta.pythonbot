@@ -21,7 +21,7 @@ servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
 
 servo_x.target_angle = 0
-servo_y.target_angle = 25
+servo_y.target_angle = -25
 
 class process1(Thread):
     def __init__(self):
@@ -59,6 +59,7 @@ class process2(Thread):
     def __init__(self):
         Thread.__init__(self)
         self.running = True
+        self.scan = True
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
@@ -82,3 +83,6 @@ class process2(Thread):
 
 MoveServoX = process1()
 CamScan = process2()
+
+MoveServoX.start()
+CamScan.start()
