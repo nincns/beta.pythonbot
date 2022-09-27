@@ -1,13 +1,13 @@
 pi-top wiring
-M0 Motor rechts
-M3 Motor links
+M2 Motor rechts
+M1 Motor links
 S3 vertikaler Servo Kamera
 S2 horizontaler Servo Kamera 
-D7 Ultraschallsensor Phalanx
-D2 Ultraschallsensor vorne
+D5 Ultraschallsensor Phalanx
+D4 Ultraschallsensor vorne
 A3 Sound Sensor
-A2 Light Sensor
+A1 Light Sensor
 D0 Buzzer
-Button
-LED links
-LED rechts
+D1 Button
+D2 LED links
+D6 LED rechts
