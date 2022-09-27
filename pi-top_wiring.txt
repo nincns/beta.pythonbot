@@ -1,8 +1,8 @@
 pi-top wiring
 M2 Motor rechts
 M1 Motor links
-S3 vertikaler Servo Kamera
-S2 horizontaler Servo Kamera 
+S3 Servo Y Kamera
+S2 Servo X Kamera 
 D5 Ultraschallsensor Phalanx
 D4 Ultraschallsensor vorne
 A3 Sound Sensor
