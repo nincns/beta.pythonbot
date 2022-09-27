@@ -1,16 +1,15 @@
-#from bot_scanning import MoveServoX, CamScan
-
+from bot_scanning import MoveServoX, CamScan
 import sys
 
 
 def menu():
     while True:
         print(
-            "Selbstcheck",
-            "Geände vermessen"
-            "Umgebung erkunden",
-            "Geräusche erkennen",
-            "Beenden",
+            "1 Selbstcheck",
+            "2 Geände vermessen"
+            "3 Umgebung erkunden",
+            "4 Geräusche erkennen",
+            "5 Beenden",
             sep="\n"
         )
         choice = int(input("Ihre Wahl? "))
