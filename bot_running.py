@@ -33,14 +33,14 @@ motor_left.breaking_type = BrakingType.COAST
 #sets servo speed and direction
 
 turnspeed = 0.1
-drivespeed = 0.05
+drivespeed = 0.2
 
 servo_x.target_angle = 0
 servo_y.target_angle = 0
 
 while True:
     #start programm
-    servo_y.target_angle = 35
+    servo_y.target_angle = -35
     
     if button.is_pressed is True:
         exit()
