@@ -14,17 +14,17 @@ from signal import pause
 import time
 
 # Setup the devices
-servo_x = ServoMotor("S0")
-servo_y = ServoMotor("S1")
+servo_x = ServoMotor("S2")
+servo_y = ServoMotor("S3")
 button = Button("D1")
-light_sensor = LightSensor("A0")
-sound_sensor = SoundSensor("A1")
+light_sensor = LightSensor("A1")
+sound_sensor = SoundSensor("A3")
 buzzer = Buzzer("D0")
-motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
-motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
+motor_right = EncoderMotor("M2", ForwardDirection.COUNTER_CLOCKWISE)
+motor_left = EncoderMotor("M1", ForwardDirection.CLOCKWISE)
 cam = Camera()
-ultrasonic_front = UltrasonicSensor("D2")
-ultrasonic_phalanx = UltrasonicSensor("D3")
+ultrasonic_front = UltrasonicSensor("D4")
+ultrasonic_phalanx = UltrasonicSensor("D5")
 miniscreen = Miniscreen()
 
 motor_right.breaking_type = BrakingType.COAST
