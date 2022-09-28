@@ -1,9 +1,11 @@
 from bot_scanning import MoveServoX, CamScan
+from bot_selfcheck import LED_check
 import sys
 
 
 def bot_selfcheck(): 
     print("start self check")
+    LED_check.start()
 
 def discover_terrain(): 
     print("discover terrain")
