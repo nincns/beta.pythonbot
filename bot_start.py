@@ -4,10 +4,10 @@ import sys
 
 def bot_selfcheck(): 
     print("start self check")
-    MoveServoX.start()
 
 def discover_terrain(): 
     print("discover terrain")
+    MoveServoX.start()
 
 def discover_dimension(): 
     print("start measurement areal dimension")
@@ -27,10 +27,10 @@ def handle_menu(menu):
                                                                     len(menu)))
 
 menu = [
-    ["01 start self check", bot_selfcheck],
-    ["02 discover terrain", discover_terrain],
-    ["03 start measurement areal dimension", discover_dimension],
-    ["04 find noise", find_noise],
+    ["start self check", bot_selfcheck],
+    ["discover terrain", discover_terrain],
+    ["start measurement areal dimension", discover_dimension],
+    ["find noise", find_noise],
 ]
 
 handle_menu(menu)
