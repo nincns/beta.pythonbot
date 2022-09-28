@@ -40,7 +40,7 @@ servo_y.target_angle = 0
 
 while True:
     #start programm
-    servo_y.target_angle = -35
+    servo_y.target_angle = -25
     
     if button.is_pressed is True:
         exit()
@@ -59,14 +59,14 @@ while True:
          motor_left.stop()
 
          servo_x.target_angle = 0
-         servo_y.target_angle = -25
+         servo_y.target_angle = 25
          sleep(2)
          miniscreen.display_multiline_text('take a photo', font_size=14)
          image = cam.get_frame()
          image.save("pictures/pitop_"+time_now+".jpg")
          sleep(2)
-         servo_y.target_angle = 35
-
+         servo_y.target_angle = -25
+         sleep(1)
          servo_x.target_angle = -45
          sleep(4)
          distance_left = round(ultrasonic_phalanx.distance.real, 2)
