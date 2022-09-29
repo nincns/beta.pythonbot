@@ -13,8 +13,9 @@ led_right = LED("D6")
 buzzer = Buzzer("D2")
 servo_x = ServoMotor("S2")
 servo_y = ServoMotor("S3")
-ultrasonic_head = UltrasonicSensor("D5")
 ultrasonic_front = UltrasonicSensor("D4")
+ultrasonic_head = UltrasonicSensor("D5")
+
 
 class check_process1(Thread):
     def __init__(self):
