@@ -65,10 +65,10 @@ class check_process3(Thread):
         pause(4)
         servo_x.target_angle=90
         servo_y.target_angle=90
-        pause(2)
+        pause(8)
         servo_x.target_angle=0
         servo_y.target_angle=0
-        pause(2)
+        pause(4)
 
 LED_check = check_process1()
 Buzzer_check = check_process2()
