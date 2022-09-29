@@ -78,13 +78,13 @@ class check_process4(Thread):
     def __init__(self):
         Thread.__init__(self)
     def start(self):
-        if ultrasonic_front.distance > 0:
+        if round(float(ultrasonic_front.distance)) > 0:
             print("Ultrasonic front ok")
-        elif ultrasonic_front.distance < 0.1:
+        elif (float(ultrasonic_front.distance)) < 0.1:
             print("Ultrasonic front failed")
-        if ultrasonic_head.distance > 0:
+        if (float(ultrasonic_head.distance)) > 0:
             print("Ultrasonic head ok")
-        elif ultrasonic_head.distance < 0.1:
+        elif (float(ultrasonic_head.distance)) < 0.1:
             print("Ultrasonic head failed")
 
 
