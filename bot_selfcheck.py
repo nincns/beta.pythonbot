@@ -16,7 +16,7 @@ class check_process1(Thread):
             print("LED left ok")
         elif led_left.is_active is False:
             print("LED left not ok")
-            led_left.off()
+        led_left.off()
 
         led_right.on()
         if led_right.is_active is True:
