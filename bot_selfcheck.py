@@ -11,8 +11,8 @@ import time
 led_left = LED("D0")
 led_right = LED("D6")
 buzzer = Buzzer("D2")
-servo_x = ServoMotor("S0")
-servo_y = ServoMotor("S3")
+servo_x = ServoMotor("S3")
+servo_y = ServoMotor("S0")
 ultrasonic_front = UltrasonicSensor("D3")
 ultrasonic_head = UltrasonicSensor("D5")
 
