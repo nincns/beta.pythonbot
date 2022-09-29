@@ -62,13 +62,16 @@ class check_process3(Thread):
 
         servo_x.target_angle=-90
         servo_y.target_angle=-90
-        pause(4)
+        print("check max lowest position Servo")
+        pause(3)
         servo_x.target_angle=90
         servo_y.target_angle=90
+        print("check max highest position Servo")
         pause(6)
         servo_x.target_angle=0
         servo_y.target_angle=0
-        pause(4)
+        print("set Servo to front position")
+        pause(3)
 
 LED_check = check_process1()
 Buzzer_check = check_process2()
