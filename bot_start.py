@@ -1,4 +1,4 @@
-from bot_scanning import MoveServoX, CamScan
+#from bot_scanning import MoveServoX, CamScan
 from bot_selfcheck import LED_check, Buzzer_check, Servo_check, Ultrasonic_check
 import sys
 
