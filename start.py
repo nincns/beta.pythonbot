@@ -1,5 +1,4 @@
-#from bot_scanning import MoveServoX, CamScan
-from bot_selfcheck import LED_check, Buzzer_check, Servo_check, Ultrasonic_check
+from selfcheck import LED_check, Buzzer_check, Servo_check, Ultrasonic_check
 import sys
 
 
@@ -12,7 +11,6 @@ def bot_selfcheck():
 
 def discover_terrain(): 
     print("discover terrain")
-    #MoveServoX.start()
 
 def discover_dimension(): 
     print("start measurement areal dimension")

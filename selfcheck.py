@@ -9,12 +9,12 @@ from threading import Thread
 import time
 
 led_left = LED("D0")
-led_right = LED("D6")
-buzzer = Buzzer("D2")
-servo_x = ServoMotor("S3")
-servo_y = ServoMotor("S0")
+led_right = LED("D7")
+buzzer = Buzzer("D5")
+servo_pan = ServoMotor("S0")
+servo_tilt = ServoMotor("S3")
 ultrasonic_front = UltrasonicSensor("D3")
-ultrasonic_head = UltrasonicSensor("D5")
+ultrasonic_head = UltrasonicSensor("D4")
 
 
 class check_process1(Thread):
@@ -55,24 +55,24 @@ class check_process3(Thread):
     def __init__(self):
         Thread.__init__(self)
     def start(self):
-        servo_x.target_angle=0
-        servo_y.target_angle=0
-        servo_x.target_speed=50
-        servo_y.target_speed=50
-        servo_x.smooth_acceleration=True
-        servo_y.smooth_acceleration=True
-        servo_x.sweep()
-        servo_y.sweep()
-        servo_x.target_angle=-90
-        servo_y.target_angle=-90
+        servo_pan.target_angle=0
+        servo_tilt.target_angle=0
+        servo_pan.target_speed=50
+        servo_tilt.target_speed=50
+        servo_pan.smooth_acceleration=True
+        servo_tilt.smooth_acceleration=True
+        servo_pan.sweep()
+        servo_tilt.sweep()
+        servo_pan.target_angle=-90
+        servo_tilt.target_angle=-90
         pause(3)
         print("Servo lowest position ok")
-        servo_x.target_angle=90
-        servo_y.target_angle=90
+        servo_pan.target_angle=90
+        servo_tilt.target_angle=90
         pause(6)
         print("Servo highest position ok")
-        servo_x.target_angle=0
-        servo_y.target_angle=0
+        servo_pan.target_angle=0
+        servo_tilt.target_angle=0
         pause(3)
 
 class check_process4(Thread):
