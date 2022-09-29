@@ -53,22 +53,20 @@ class check_process3(Thread):
     def start(self):
         servo_x.target_angle=0
         servo_y.target_angle=0
-        servo_x.sweep()
-        servo_y.sweep()
         servo_x.target_speed=50
         servo_y.target_speed=50
+        servo_x.sweep()
+        servo_y.sweep()
+        servo_x.target_angle=90
+        servo_x.target_angle=90
 
         servo_x.target_angle=-90
-        pause(4)
-        servo_x.target_angle=90
-        pause(2)
-        servo_x.target_angle=0
-        pause(2)
-
         servo_y.target_angle=-90
         pause(4)
+        servo_x.target_angle=90
         servo_y.target_angle=90
         pause(2)
+        servo_x.target_angle=0
         servo_y.target_angle=0
         pause(2)
 
