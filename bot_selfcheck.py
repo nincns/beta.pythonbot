@@ -1,3 +1,4 @@
+from matplotlib.pyplot import pause
 from pitop import LED
 from pitop import Buzzer
 
@@ -14,6 +15,7 @@ class check_process1(Thread):
     def start(self):
 
         led_left.on()
+        pause(1)
         if led_left.is_active is True:
             print("LED left ok")
         elif led_left.is_active is False:
@@ -21,6 +23,7 @@ class check_process1(Thread):
         led_left.off()
 
         led_right.on()
+        pause(1)
         if led_right.is_active is True:
             print("LED right ok")
         elif led_right.is_active is False:
@@ -33,6 +36,7 @@ class check_process2(Thread):
     def start(self):
 
         buzzer.on()
+        pause(1)
         if buzzer.is_active is True:
             print("Buzzer ok")
         elif buzzer.is_active is False:
