@@ -49,7 +49,7 @@ right_rotation_counter = motor_right.rotation_counter
 
 motor_right.backward(target_speed=turnspeed)
 motor_left.forward(target_speed=turnspeed)
-miniscreen.display_multiline_text('doing a ' + target_degrees, font_size=14)
+miniscreen.display_multiline_text('doing a ' + str(target_degrees), font_size=14)
 
 while True:
     #start programm
