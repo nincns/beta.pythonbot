@@ -12,7 +12,7 @@ def bot_selfcheck():
 
 def discover_terrain(): 
     print("discover terrain")
-    MoveServoX.start()
+    #MoveServoX.start()
 
 def discover_dimension(): 
     print("start measurement areal dimension")
