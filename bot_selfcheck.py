@@ -3,7 +3,7 @@ from pitop import LED
 from threading import Thread
 import time
 
-led_left = LED("D2")
+led_left = LED("D1")
 led_right = LED("D6")
 
 class check_process1(Thread):
