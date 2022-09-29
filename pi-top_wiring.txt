@@ -1,6 +1,6 @@
 pi-top wiring
-M2 Motor rechts
-M1 Motor links
+M0 Motor rechts
+M3 Motor links
 S3 Servo Y Kamera
 S2 Servo X Kamera 
 D5 Ultraschallsensor head
