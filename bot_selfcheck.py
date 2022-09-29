@@ -65,7 +65,7 @@ class check_process3(Thread):
         pause(4)
         servo_x.target_angle=90
         servo_y.target_angle=90
-        pause(8)
+        pause(6)
         servo_x.target_angle=0
         servo_y.target_angle=0
         pause(4)
