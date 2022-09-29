@@ -7,7 +7,7 @@ D5 Ultraschallsensor Phalanx
 D4 Ultraschallsensor vorne
 A3 Sound Sensor
 A1 Light Sensor
-D0 Buzzer
+D2 Buzzer
 D1 Button
-D2 LED links
+D0 LED links
 D6 LED rechts
