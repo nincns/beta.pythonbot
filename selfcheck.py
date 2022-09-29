@@ -64,11 +64,11 @@ class check_process3(Thread):
         servo_pan.sweep()
         servo_tilt.sweep()
         servo_pan.target_angle=-90
-        servo_tilt.target_angle=-90
+        servo_tilt.target_angle=90
         pause(3)
         print("Servo lowest position ok")
         servo_pan.target_angle=90
-        servo_tilt.target_angle=90
+        servo_tilt.target_angle=-90
         pause(6)
         print("Servo highest position ok")
         servo_pan.target_angle=0
