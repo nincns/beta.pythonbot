@@ -3,6 +3,7 @@ from matplotlib.pyplot import pause
 from pitop import LED
 from pitop import Buzzer
 from pitop import ServoMotor, ServoMotorSetting
+from pitop import UltrasonicSensor
 
 from threading import Thread
 import time
@@ -12,6 +13,8 @@ led_right = LED("D6")
 buzzer = Buzzer("D2")
 servo_x = ServoMotor("S2")
 servo_y = ServoMotor("S3")
+ultrasonic_head = UltrasonicSensor("D5")
+ultrasonic_front = UltrasonicSensor("D4")
 
 class check_process1(Thread):
     def __init__(self):
@@ -55,11 +58,10 @@ class check_process3(Thread):
         servo_y.target_angle=0
         servo_x.target_speed=50
         servo_y.target_speed=50
+        servo_x.smooth_acceleration=True
+        servo_y.smooth_acceleration=True
         servo_x.sweep()
         servo_y.sweep()
-        servo_x.target_angle=90
-        servo_x.target_angle=90
-
         servo_x.target_angle=-90
         servo_y.target_angle=-90
         pause(3)
@@ -72,6 +74,21 @@ class check_process3(Thread):
         servo_y.target_angle=0
         pause(3)
 
+class check_process4(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+    def start(self):
+        if ultrasonic_front.distance > 0:
+            print("Ultrasonic front ok")
+        elif ultrasonic_front.distance < 0.1:
+            print("Ultrasonic front failed")
+        if ultrasonic_head.distance > 0:
+            print("Ultrasonic head ok")
+        elif ultrasonic_head.distance < 0.1:
+            print("Ultrasonic head failed")
+
+
 LED_check = check_process1()
 Buzzer_check = check_process2()
 Servo_check = check_process3()
+Ultrasonic_check = check_process4()

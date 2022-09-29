@@ -1,5 +1,5 @@
 from bot_scanning import MoveServoX, CamScan
-from bot_selfcheck import LED_check, Buzzer_check, Servo_check
+from bot_selfcheck import LED_check, Buzzer_check, Servo_check, Ultrasonic_check
 import sys
 
 
@@ -8,6 +8,7 @@ def bot_selfcheck():
     LED_check.start()
     Buzzer_check.start()
     Servo_check.start()
+    Ultrasonic_check.start()
 
 def discover_terrain(): 
     print("discover terrain")
