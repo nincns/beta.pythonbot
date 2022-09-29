@@ -10,7 +10,7 @@ import time
 
 servo_x = ServoMotor("S2")
 servo_y = ServoMotor("S3")
-ultrasonic_phalanx = UltrasonicSensor("D5")
+ultrasonic_head = UltrasonicSensor("D5")
 ultrasonic_front = UltrasonicSensor("D4")
 button = Button("D1")
 sound_sensor = SoundSensor("A3")
@@ -32,7 +32,7 @@ class process1(Thread):
         scandirection = "left"
         while self.running: #running process 1
          if servo_x.current_angle < 90 and scandirection == "left" and self.move is True: #Servo will try start scanning in right direction
-            print("left ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
+            print("left ",servo_x.current_angle, "distance ", round(ultrasonic_head.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             if servo_x.current_angle <= 80: #error handling when something interupt process and angle will not 10, 20 or something will execpt with error servo can not set to 90+ degree same for left direction
                 servo_x.target_angle = servo_x.current_angle + 10
             elif servo_x.current_angle >= 81:
@@ -40,7 +40,7 @@ class process1(Thread):
          elif servo_x.current_angle == 90:
             scandirection = "right"
          if servo_x.current_angle > -90 and scandirection == "right" and self.move is True:
-            print("right ",servo_x.current_angle, "distance ", round(ultrasonic_phalanx.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
+            print("right ",servo_x.current_angle, "distance ", round(ultrasonic_head.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             if servo_x.current_angle >= -80:
                 servo_x.target_angle = servo_x.current_angle - 10
             elif servo_x.current_angle <= -81:

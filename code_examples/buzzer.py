@@ -2,7 +2,7 @@ from time import sleep
 
 from pitop import Buzzer
 
-buzzer = Buzzer("D0")
+buzzer = Buzzer("D1")
 
 buzzer.on()  # Set buzzer sound on
 print(buzzer.value)  # Return 1 while the buzzer is on
