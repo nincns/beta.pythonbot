@@ -1,4 +1,4 @@
-from selfcheck import LED_check, Buzzer_check, Servo_check, Ultrasonic_check
+from selfcheck import LED_check, Buzzer_check, LightSensor_check, Servo_check, Ultrasonic_check, LightSensor
 import sys
 
 
@@ -8,6 +8,7 @@ def bot_selfcheck():
     Buzzer_check.start()
     Servo_check.start()
     Ultrasonic_check.start()
+    LightSensor_check.start()
 
 def discover_terrain(): 
     print("discover terrain")

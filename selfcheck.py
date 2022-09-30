@@ -4,6 +4,8 @@ from pitop import LED
 from pitop import Buzzer
 from pitop import ServoMotor, ServoMotorSetting
 from pitop import UltrasonicSensor
+from pitop import LightSensor
+
 
 from threading import Thread
 import time
@@ -15,6 +17,7 @@ servo_pan = ServoMotor("S0")
 servo_tilt = ServoMotor("S3")
 ultrasonic_front = UltrasonicSensor("D3")
 ultrasonic_head = UltrasonicSensor("D4")
+light_sensor = LightSensor("A1")
 
 
 class check_process1(Thread):
@@ -88,8 +91,17 @@ class check_process4(Thread):
         elif (round(ultrasonic_head.distance)) < 0.1:
             print("Ultrasonic head failed")
 
+class check_process5(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+    def start(self):
+        if light_sensor.state == 1:
+            print("LightSensor ok")
+        elif light_sensor.state != 1:
+            print("LightSensor failed")
 
 LED_check = check_process1()
 Buzzer_check = check_process2()
 Servo_check = check_process3()
 Ultrasonic_check = check_process4()
+LightSensor_check = check_process5()
