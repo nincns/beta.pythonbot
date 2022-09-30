@@ -95,9 +95,9 @@ class check_process5(Thread):
     def __init__(self):
         Thread.__init__(self)
     def start(self):
-        if light_sensor.state == 1:
+        if light_sensor.reading > 0:
             print("LightSensor ok")
-        elif light_sensor.state != 1:
+        elif light_sensor.is_current is False:
             print("LightSensor failed")
 
 LED_check = check_process1()
