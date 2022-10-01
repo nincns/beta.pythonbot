@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 from selfcheck import LED_check, Buzzer_check, LightSensor_check, Servo_check, Ultrasonic_check, LightSensor
 import sys
 
