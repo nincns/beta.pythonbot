@@ -10,8 +10,8 @@ import time
 
 servo_x = ServoMotor("S0")
 servo_y = ServoMotor("S3")
-ultrasonic_front = UltrasonicSensor("D4")
-ultrasonic_head = UltrasonicSensor("D5")
+ultrasonic_front = UltrasonicSensor("D3")
+ultrasonic_head = UltrasonicSensor("D4")
 
 button = Button("D1")
 sound_sensor = SoundSensor("A3")

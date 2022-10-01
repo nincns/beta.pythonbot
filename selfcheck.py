@@ -4,13 +4,9 @@ from matplotlib.pyplot import pause
 from pitop import LED
 from pitop import Buzzer
 from pitop import ServoMotor
-#from pitop import UltrasonicSensor
+from pitop import UltrasonicSensor
 from pitop import LightSensor
 from pitop import SoundSensor
-
-from scanning import UltrasonicSensor
-
-
 
 from threading import Thread
 import time
