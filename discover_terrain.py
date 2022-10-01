@@ -157,10 +157,11 @@ class process3(Thread):
         print("analyse moving direction")
         if drive_logic == 1:
             print("discover terrain - look for the best way")
+            print("Break 5 sec")
+            sleep(5)
 
 
-            motor_right.set_power(drivespeed)
-            motor_left.set_power(drivespeed)
+            self.turnforward = True
         elif drive_logic == 2:
             print("search for noise - look for sources of noise")
         elif drive_logic == 3:
