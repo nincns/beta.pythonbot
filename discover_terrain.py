@@ -67,14 +67,14 @@ class process1(Thread):
          sleep(0.25)
         
          if servo_pan.current_angle < 0:
-            i = (servo_pan.current_angle*-1)/10
+            i = round((servo_pan.current_angle*-1)/10)
             pan_distance[i] = round(ultrasonic_head.distance.real, 2)
          elif servo_pan.current_angle == 0:
             pan_distance[0] = round(ultrasonic_head.distance.real, 2)
          elif servo_pan.current_angle == 10:
             pan_distance[10] = round(ultrasonic_head.distance.real, 2)
          elif servo_pan.current_angle > 10:
-            i = servo_pan.current_angle/10+10
+            i = round(servo_pan.current_angle/10+9)
             pan_distance[i] = round(ultrasonic_head.distance.real, 2)
          print(pan_distance)
          sleep(0.5)
