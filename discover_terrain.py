@@ -39,7 +39,7 @@ servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
 
 pan_distance = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,]
-drive_logic = input("please type prgramm number '(1 = discover terrain, 2 = find noise, 3 = find light)':")
+drive_logic = input("please type prgramm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 
 class process1(Thread):
     def __init__(self):
