@@ -77,6 +77,7 @@ class process1(Thread):
             i = servo_pan.current_angle/10+10
             pan_distance[i] = round(ultrasonic_head.distance.real, 2)
          print(pan_distance)
+         sleep(0.5)
 
     def stop(self):
         self.running = False
