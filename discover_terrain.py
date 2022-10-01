@@ -36,7 +36,7 @@ servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
 
 servo_pan.target_angle = 0
-servo_tilt.target_angle = 25
+servo_tilt.target_angle = 20
 
 class process1(Thread):
     def __init__(self):
@@ -46,7 +46,7 @@ class process1(Thread):
 
     def run(self):
         scandirection = "left"
-        pan_distance = [19]
+        pan_distance = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
         while self.running: #running process 1
          if servo_pan.current_angle < 90 and scandirection == "left" and self.move is True: #Servo will try start scanning in right direction
             print(servo_pan.current_angle, "distance ", round(ultrasonic_head.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
@@ -101,7 +101,7 @@ class process2(Thread):
                 sleep(2)
                 image = cam.get_frame()
                 image.save("pictures/pitop_"+time_now+".jpg")
-                servo_tilt.target_angle = 25
+                servo_tilt.target_angle = 20
                 sleep(2)
                 MoveServoX.resume()
                 MovePiTop.analyse()
