@@ -23,8 +23,8 @@ cam = Camera()
 motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
 motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
 
-led_left = LED("0")
-led_right = LED("7")
+led_left = LED("D0")
+led_right = LED("D7")
 
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
