@@ -1,6 +1,6 @@
 from time import sleep
 from pitop import ServoMotor, ServoMotorSetting
-#from pitop import UltrasonicSensor
+from pitop import UltrasonicSensor
 from pitop import Button
 from pitop import SoundSensor
 from pitop import LightSensor
