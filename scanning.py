@@ -123,6 +123,6 @@ MoveServoX = process1()
 CamScan = process2()
 MovePiTop = process3()
 
-MovePiTop.forward()
+MovePiTop.start()
 MoveServoX.start()
 CamScan.start()
