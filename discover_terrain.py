@@ -105,6 +105,7 @@ class process2(Thread):
                 servo_pan.target_angle = 0
                 servo_tilt.target_angle = 0
                 sleep(2)
+                MovePiTop.pause()
                 image = cam.get_frame()
                 image.save("pictures/pitop_"+time_now+".jpg")
                 servo_tilt.target_angle = 20
