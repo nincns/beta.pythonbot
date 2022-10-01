@@ -26,7 +26,7 @@ motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
 
 turnspeed = 0.1
-drivespeed = 0.2
+drivespeed = 0.1
 
 servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
@@ -98,25 +98,31 @@ class process3(Thread):
     def __init__(self):
         Thread.__init__(self)
         self.running = True
-        self.driveforward = True
+        self.turnforward = True
+        self.turnleft = False
+        self.turnright = False
 
     def run(self):
         while self.running: #running process 3
-            if self.driveforward is True:
+            if self.turnforward is True:
                 motor_right.forward(target_speed=drivespeed)
                 motor_left.forward(target_speed=drivespeed)
-            elif self.driveforward is False:
+            elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
 
+            sleep(1)
+
     def stop(self):
         self.running = False
-    def pause():
-        self.driveforward = False
-    def resume():
-        self.driveforward = True
-
-
+    def pause(self):
+        self.turnforward = False
+    def resume(self):
+        self.turnforward = True
+    def left(self):
+        self.turnleft = True
+    def right(self):
+        self.turnforward = True
         
 
 MoveServoX = process1()
