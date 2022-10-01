@@ -29,6 +29,9 @@ led_right = LED("D7")
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
 
+motor_right.wheel_diameter=0.045
+motor_left.wheel_diameter=0.045
+
 turnspeed = 0.1
 drivespeed = 0.1
 
@@ -39,7 +42,7 @@ servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
 
 pan_distance = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,]
-drive_logic = input("please type prgramm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
+drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 
 class process1(Thread):
     def __init__(self):
@@ -146,6 +149,12 @@ class process3(Thread):
         #PiTop turn 10 degree to right side
     def analyse(self):
         print("analyse moving direction")
+        if drive_logic == 1:
+            print("discover terrain - look for the best way")
+        elif drive_logic == 2:
+            print("search for noise - look for sources of noise")
+        elif drive_logic == 3:
+            print("search for light - look for bright sources and lights")
 
 class process4(Thread):
     def __init__(self):
