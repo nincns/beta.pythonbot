@@ -1,3 +1,4 @@
+#!/usr/local/bin/python
 from distutils.command.sdist import sdist
 from matplotlib.pyplot import pause
 from pitop import LED
