@@ -46,7 +46,7 @@ class process1(Thread):
 
     def run(self):
         scandirection = "left"
-        pan_distance = 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
+        pan_distance = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,]
         while self.running: #running process 1
          if servo_pan.current_angle < 90 and scandirection == "left" and self.move is True: #Servo will try start scanning in right direction
             print(servo_pan.current_angle, "distance ", round(ultrasonic_head.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
@@ -66,13 +66,12 @@ class process1(Thread):
             scandirection = "left"
          sleep(0.25)
         
-         if servo_pan.current_angle < 0:
+         if servo_pan.current_angle <= 0:
             i = int((servo_pan.current_angle*-1)/10)
             pan_distance[i] = round(ultrasonic_head.distance.real, 2)
-         elif servo_pan.current_angle == 0:
-            pan_distance[0] = round(ultrasonic_head.distance.real, 2)
          elif servo_pan.current_angle == 10:
-            pan_distance[10] = round(ultrasonic_head.distance.real, 2)
+            i = 10
+            pan_distance[i] = round(ultrasonic_head.distance.real, 2)
          elif servo_pan.current_angle > 10:
             i = int(servo_pan.current_angle/10+9)
             pan_distance[i] = round(ultrasonic_head.distance.real, 2)
