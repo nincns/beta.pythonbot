@@ -32,9 +32,9 @@ motor_left.breaking_type = BrakingType.COAST
 motor_right.wheel_diameter=0.045
 motor_left.wheel_diameter=0.045
 
-turnspeed = input("set turnspeed (0.1-1.0): ")
+turnspeed = input("set turnspeed (0.2-1.0): ")
 turnspeed = float(turnspeed)
-drivespeed = input("set drivespeed (0.1-1.0): ")
+drivespeed = input("set basis drivespeed (0.2-1.0): ")
 drivespeed = float(drivespeed)
 
 servo_settings = ServoMotorSetting()
@@ -98,8 +98,8 @@ class process2(Thread):
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
-            if round(ultrasonic_front.distance.real, 2) < 0.5 and self.scan is True:
-                MovePiTop.pause()
+            if round(ultrasonic_front.distance.real, 2) < 1 and self.scan is True:
+                MovePiTop.reducespeed()
                 MoveServoX.pause()
                 servo_pan.target_angle = 0
                 servo_tilt.target_angle = 0
@@ -141,6 +141,9 @@ class process3(Thread):
         self.running = False
     def pause(self):
         self.turnforward = False
+    def reducespeed(self):
+        motor_right.set_power(turnspeed)
+        motor_left.set_power(turnspeed)
     def resume(self):
         self.turnforward = True
     def left(self):
