@@ -32,8 +32,8 @@ motor_left.breaking_type = BrakingType.COAST
 motor_right.wheel_diameter=0.045
 motor_left.wheel_diameter=0.045
 
-turnspeed = 0.1
-drivespeed = 0.1
+turnspeed = input(float("set turnspeed (0.1-1.0): "))
+drivespeed = input(float("set drivespeed (0.1-1.0): "))
 
 servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
@@ -127,8 +127,8 @@ class process3(Thread):
     def run(self):
         while self.running: #running process 3
             if self.turnforward is True:
-                motor_right.forward(target_speed=drivespeed)
-                motor_left.forward(target_speed=drivespeed)
+                motor_right.set_power(drivespeed)
+                motor_left.set_power(drivespeed)
             elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
