@@ -6,6 +6,7 @@ from pitop import SoundSensor
 from pitop import LightSensor
 from pitop import Camera
 from pitop import BrakingType, EncoderMotor, ForwardDirection
+from pitop import LED
 from threading import Thread
 import time
 
@@ -21,6 +22,9 @@ cam = Camera()
 
 motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
 motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
+
+led_left = LED("0")
+led_right = LED("7")
 
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
@@ -126,11 +130,27 @@ class process3(Thread):
     def analyse(self):
         print("analyse moving direction")
 
+class process4(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+        self.running = True
+    def run(self):
+        while self.running:
+            led_left.on()
+            sleep(0.5)
+            led_left.off()
+            led_right.on()
+            sleep(0.5)
+            led_right.off()
+    def stop(self):
+        self.running = False
 
 MoveServoX = process1()
 CamScan = process2()
 MovePiTop = process3()
+YellowBeacon = process4()
 
 MovePiTop.start()
 MoveServoX.start()
 CamScan.start()
+YellowBeacon.start()
