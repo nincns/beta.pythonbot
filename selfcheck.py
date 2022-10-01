@@ -6,6 +6,7 @@ from pitop import Buzzer
 from pitop import ServoMotor, ServoMotorSetting
 from pitop import UltrasonicSensor
 from pitop import LightSensor
+from pitop import SoundSensor
 
 
 from threading import Thread
@@ -19,6 +20,7 @@ servo_tilt = ServoMotor("S3")
 ultrasonic_front = UltrasonicSensor("D3")
 ultrasonic_head = UltrasonicSensor("D4")
 light_sensor = LightSensor("A1")
+soundsensor = SoundSensor("A3")
 
 
 class check_process1(Thread):
@@ -98,8 +100,18 @@ class check_process5(Thread):
     def start(self):
         print("Lightsensor: ", light_sensor.reading)
 
+class check_process6(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+    def start(self):
+        if soundsensor.value == 1:  
+            print("SoundSensor ok")
+        elif soundsensor.value != 1:
+            print("SoundSensor failed")
+
 LED_check = check_process1()
 Buzzer_check = check_process2()
 Servo_check = check_process3()
 Ultrasonic_check = check_process4()
 LightSensor_check = check_process5()
+SoundSensor_check = check_process6()

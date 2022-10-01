@@ -1,12 +1,12 @@
 pi-top wiring
 M0 Motor rechts
 M3 Motor links
-S3 Servo Tilt Kamera
-S0 Servo Pan Kamera 
-D4 Ultraschallsensor head
-D3 Ultraschallsensor front
-A3 Sound Sensor
-A1 Light Sensor
+S3 ServoMotor, ServoMotorSetting Tilt Kamera
+S0 ServoMotor, ServoMotorSetting Pan Kamera 
+D4 UltrasonicSensor head
+D3 UltrasonicSensor front
+A3 SoundSensor
+A1 LightSensor
 D5 Buzzer
 D2 Button
 D0 LED links
