@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 from selfcheck import LED_check, Buzzer_check, LightSensor_check, Servo_check, Ultrasonic_check, LightSensor_check, SoundSensor_check
+from scanning import MoveServoX
 import sys
 
 
@@ -14,6 +15,7 @@ def bot_selfcheck():
 
 def discover_terrain(): 
     print("discover terrain")
+    MoveServoX.start()
 
 def discover_dimension(): 
     print("start measurement areal dimension")
