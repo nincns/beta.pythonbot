@@ -85,7 +85,7 @@ class process2(Thread):
                 servo_tilt.target_angle = -25
                 sleep(2)
                 MoveServoX.resume()
-                MovePiTop.forward()
+                MovePiTop.resume()
             time.sleep(1)
     def stop(self):
         self.running = False
@@ -97,13 +97,26 @@ class process2(Thread):
 class process3(Thread):
     def __init__(self):
         Thread.__init__(self)
+        self.running = True
+        self.driveforward = True
+
+    def run(self):
+        while self.running: #running process 3
+            if self.driveforward is True:
+                motor_right.forward(target_speed=drivespeed)
+                motor_left.forward(target_speed=drivespeed)
+            elif self.driveforward is False:
+                motor_right.stop()
+                motor_left.stop()
 
     def stop(self):
-        motor_right.stop()
-        motor_left.stop()
-    def forward():
-        motor_right.forward(target_speed=drivespeed)
-        motor_left.forward(target_speed=drivespeed)
+        self.running = False
+    def pause():
+        self.driveforward = False
+    def resume():
+        self.driveforward = True
+
+
         
 
 MoveServoX = process1()
