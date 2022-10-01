@@ -142,8 +142,9 @@ class process3(Thread):
     def pause(self):
         self.turnforward = False
     def reducespeed(self):
-        drivespeed = turnspeed
-        drivespeed = turnspeed
+        self.turnforward = False
+        motor_right.set_power(turnspeed)
+        motor_left.set_power(turnspeed)
     def resume(self):
         self.turnforward = True
     def left(self):
