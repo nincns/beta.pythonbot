@@ -32,8 +32,10 @@ motor_left.breaking_type = BrakingType.COAST
 motor_right.wheel_diameter=0.045
 motor_left.wheel_diameter=0.045
 
-turnspeed = input(float("set turnspeed (0.1-1.0): "))
-drivespeed = input(float("set drivespeed (0.1-1.0): "))
+turnspeed = input("set turnspeed (0.1-1.0): ")
+turnspeed = float(turnspeed)
+drivespeed = input("set drivespeed (0.1-1.0): ")
+drivespeed = float(drivespeed)
 
 servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
