@@ -1,5 +1,5 @@
 #!/usr/local/bin/python
-from scanning import MoveServoX
+from discover_terrain import MoveServoX
 import sys
 
 
