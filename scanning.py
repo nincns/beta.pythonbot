@@ -5,6 +5,7 @@ from pitop import Button
 from pitop import SoundSensor
 from pitop import LightSensor
 from pitop import Camera
+from pitop import BrakingType, EncoderMotor, ForwardDirection
 from threading import Thread
 import time
 
@@ -17,6 +18,15 @@ button = Button("D1")
 sound_sensor = SoundSensor("A3")
 light_sensor = LightSensor("A1")
 cam = Camera()
+
+motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
+motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
+
+motor_right.breaking_type = BrakingType.COAST
+motor_left.breaking_type = BrakingType.COAST
+
+turnspeed = 0.1
+drivespeed = 0.2
 
 servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
@@ -65,6 +75,7 @@ class process2(Thread):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
             if round(ultrasonic_front.distance.real, 2) < 0.5 and self.scan is True:
+                MovePiTop.pause()
                 MoveServoX.pause()
                 servo_pan.target_angle = 0
                 servo_tilt.target_angle = 0
@@ -74,6 +85,7 @@ class process2(Thread):
                 servo_tilt.target_angle = -25
                 sleep(2)
                 MoveServoX.resume()
+                MovePiTop.forward()
             time.sleep(1)
     def stop(self):
         self.running = False
@@ -82,5 +94,22 @@ class process2(Thread):
     def resume(self):
         self.scan = True
 
+class process3(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+
+    def stop(self):
+        motor_right.stop()
+        motor_left.stop()
+    def forward():
+        motor_right.forward(target_speed=drivespeed)
+        motor_left.forward(target_speed=drivespeed)
+        
+
 MoveServoX = process1()
 CamScan = process2()
+MovePiTop = process3()
+
+MovePiTop.forward()
+MoveServoX.start()
+CamScan.start()
