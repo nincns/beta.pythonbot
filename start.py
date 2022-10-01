@@ -1,17 +1,11 @@
 #!/usr/local/bin/python
-from selfcheck import LED_check, Buzzer_check, LightSensor_check, Servo_check, Ultrasonic_check, LightSensor_check, SoundSensor_check
 from scanning import MoveServoX
 import sys
 
 
 def bot_selfcheck(): 
     print("start self check")
-    LED_check.start()
-    Buzzer_check.start()
-    Servo_check.start()
-    Ultrasonic_check.start()
-    LightSensor_check.start()
-    SoundSensor_check.start()
+
 
 def discover_terrain(): 
     print("discover terrain")
