@@ -33,3 +33,4 @@ while turn_left is True:
      elif lc == motor_left.rotation_counter:
         motor_left.stop()
         turn_left is False
+     print(motor_left.rotation_counter)
