@@ -39,6 +39,7 @@ servo_settings.speed = 50
 #set servo default position
 servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
+#set default array for head ultrasonic maesurements
 pan_distance = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
