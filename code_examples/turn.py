@@ -29,7 +29,7 @@ while turn_left is True:
         motor_left.set_power(turnspeed)
      if lc < motor_left.rotation_counter:
         motor_left.set_power(turnspeed*-1)
-     if lc == motor_left.rotation_counter:
+     if lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
         motor_left.stop()
         turn_left = False
      print(motor_left.rotation_counter)
