@@ -147,8 +147,8 @@ class process3(Thread):
             elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
-
-            sleep(1)
+            print(pan_distance)
+            sleep(5)
 
     def stop(self):
         self.running = False
