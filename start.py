@@ -59,6 +59,17 @@ class process1(Thread):
          if servo_pan.current_angle < 90 and scandirection == "left" and self.move is True: #Servo will try start scanning in right direction
             print(servo_pan.current_angle, "distance ", round(ultrasonic_head.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             if servo_pan.current_angle <= 80: #error handling when something interupt process and angle will not 10, 20 or something will execpt with error servo can not set to 90+ degree same for left direction
+                
+                if servo_pan.current_angle <= 0:
+                    i = int((servo_pan.current_angle*-1)/10)
+                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                elif servo_pan.current_angle == 10:
+                    i = 10
+                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                elif servo_pan.current_angle > 10:
+                    i = int(servo_pan.current_angle/10+9)
+                pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                
                 servo_pan.target_angle = servo_pan.current_angle + 10
             elif servo_pan.current_angle >= 81:
                 servo_pan.target_angle = 90
@@ -67,21 +78,23 @@ class process1(Thread):
          if servo_pan.current_angle > -90 and scandirection == "right" and self.move is True:
             print(servo_pan.current_angle, "distance ", round(ultrasonic_head.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
             if servo_pan.current_angle >= -80:
+                
+                if servo_pan.current_angle <= 0:
+                    i = int((servo_pan.current_angle*-1)/10)
+                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                elif servo_pan.current_angle == 10:
+                    i = 10
+                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                elif servo_pan.current_angle > 10:
+                    i = int(servo_pan.current_angle/10+9)
+                pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                
                 servo_pan.target_angle = servo_pan.current_angle - 10
             elif servo_pan.current_angle <= -81:
                 servo_pan.target_angle = -90
          elif servo_pan.current_angle == -90:
             scandirection = "left"
         
-         if servo_pan.current_angle <= 0:
-            i = int((servo_pan.current_angle*-1)/10)
-            pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
-         elif servo_pan.current_angle == 10:
-            i = 10
-            pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
-         elif servo_pan.current_angle > 10:
-            i = int(servo_pan.current_angle/10+9)
-            pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
          sleep(0.25)
 
     def stop(self):
