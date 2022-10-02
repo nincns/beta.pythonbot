@@ -98,7 +98,7 @@ class process1(Thread):
          elif servo_pan.current_angle == -90:
             scandirection = "left"
          sleep(0.25)
-         degree,range,noise,light=list(zip(*pan_maesure))
+         
 
     def stop(self):
         self.running = False
@@ -175,8 +175,10 @@ class process3(Thread):
         if drive_logic == 1:
             print("discover terrain - look for the best way")
             print("Break 5 sec")
+            #degree,range,noise,light=list(zip(*pan_maesure))
             #print('space right:',sum(range[1:8])/8)
             #print('space left:',sum(range[9:18])/8)
+            print(pan_maesure)
             sleep(5)
 
 
