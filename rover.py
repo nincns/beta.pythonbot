@@ -58,6 +58,7 @@ class process2(Thread):
             led_right.on()
             time.sleep(0.1)
             led_right.off()
+            sleep(0.5)
     def stop(self):
         self.running = False
 
