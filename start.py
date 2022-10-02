@@ -160,8 +160,9 @@ class process3(Thread):
         self.turnforward = False
     def reducespeed(self):
         self.turnforward = False
-        motor_right.set_power(turnspeed)
-        motor_left.set_power(turnspeed)
+        if motor_right.current_rpm and motor_left.current_rpm > 0:
+            motor_right.set_power(turnspeed)
+            motor_left.set_power(turnspeed)
     def resume(self):
         self.turnforward = True
     def left(self):
@@ -186,14 +187,14 @@ class process3(Thread):
             print("search for noise - look for sources of noise")
             print("Break 5 sec")
             degree,range,noise,light=list(zip(*pan_maesure))
-            print('space right:',sum(noise[1:8])/8)
-            print('space left:',sum(noise[9:18])/8)
+            print('noise right:',sum(noise[1:8])/8)
+            print('noise left:',sum(noise[9:18])/8)
         elif drive_logic == 3:
             print("search for light - look for bright sources and lights")
             print("Break 5 sec")
             degree,range,noise,light=list(zip(*pan_maesure))
-            print('space right:',sum(light[1:8])/8)
-            print('space left:',sum(light[9:18])/8)
+            print('light right:',sum(light[1:8])/8)
+            print('light left:',sum(light[9:18])/8)
 
 class process4(Thread):
     def __init__(self):
