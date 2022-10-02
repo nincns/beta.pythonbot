@@ -10,40 +10,37 @@ from pitop import LED
 from threading import Thread
 import time
 
-servo_pan = ServoMotor("S0")
-servo_tilt = ServoMotor("S3")
+#device & sensor settings
 ultrasonic_front = UltrasonicSensor("D3")
 ultrasonic_head = UltrasonicSensor("D4")
-
-button = Button("D1")
+#button = Button("D1") not used actually
 sound_sensor = SoundSensor("A3")
 light_sensor = LightSensor("A1")
 cam = Camera()
-
-motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
-motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
-
 led_left = LED("D0")
 led_right = LED("D7")
-
+#motor settings
+motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
+motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
-
 motor_right.wheel_diameter=0.045
 motor_left.wheel_diameter=0.045
-
+#drive settings input
 turnspeed = input("set turnspeed (0.2-1.0): ")
 turnspeed = float(turnspeed)
 drivespeed = input("set basis drivespeed (0.2-1.0): ")
 drivespeed = float(drivespeed)
-
+#servo settings
+servo_pan = ServoMotor("S0")
+servo_tilt = ServoMotor("S3")
 servo_settings = ServoMotorSetting()
 servo_settings.speed = 50
-
+#set servo default position
 servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
-
 pan_distance = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+#input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 drive_logic = int(drive_logic)
 
