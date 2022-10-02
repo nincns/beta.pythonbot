@@ -41,7 +41,7 @@ servo_settings.speed = 50
 servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
 #set default array for head ultrasonic maesurements from -90, -80.... 0, 10, 20.... 90 (19valuess)
-pan_maesure  = [(0, 0, 0, 0)] * 19
+pan_maesure  = [(0, 0, 0, 0)] * 20
 degree = [0] * 19 
 range  = [0] * 19 
 noise  = [0] * 19 
