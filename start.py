@@ -41,7 +41,7 @@ servo_settings.speed = 50
 servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
 #set default array for head ultrasonic maesurements from -90, -80.... 0, 10, 20.... 90 (19valuess)
-pan_maesure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+pan_maesure = [(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),]
 degree = []
 range = []
 noise = []
@@ -175,9 +175,9 @@ class process3(Thread):
         if drive_logic == 1:
             print("discover terrain - look for the best way")
             print("Break 5 sec")
-            #degree,range,noise,light=list(zip(*pan_maesure))
-            #print('space right:',sum(range[1:8])/8)
-            #print('space left:',sum(range[9:18])/8)
+            degree,range,noise,light=list(zip(*pan_maesure))
+            print('space right:',sum(range[1:8])/8)
+            print('space left:',sum(range[9:18])/8)
             print(pan_maesure)
             sleep(5)
 
