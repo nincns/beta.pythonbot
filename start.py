@@ -196,12 +196,12 @@ class process4(Thread):
     def stop(self):
         self.running = False
 
-MoveServoX = process1()
+MoveServoPan = process1()
 CamScan = process2()
 MovePiTop = process3()
 YellowBeacon = process4()
 
 MovePiTop.start()
-MoveServoX.start()
+MoveServoPan.start()
 CamScan.start()
 YellowBeacon.start()
