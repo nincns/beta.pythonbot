@@ -1,4 +1,5 @@
 from time import sleep
+from turtle import distance
 from pitop import ServoMotor, ServoMotorSetting
 from pitop import UltrasonicSensor
 from pitop import Button
@@ -40,7 +41,11 @@ servo_settings.speed = 50
 servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
 #set default array for head ultrasonic maesurements from -90, -80.... 0, 10, 20.... 90 (19valuess)
-pan_distance = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+pan_maesure = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ]
+degree = []
+range = []
+noise = []
+light = []
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 drive_logic = int(drive_logic)
@@ -60,13 +65,13 @@ class process1(Thread):
                 #add Ultrasonic distance value to pan_distance array
                 if servo_pan.current_angle <= 0:
                     i = int((servo_pan.current_angle*-1)/10)
-                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                    pan_maesure[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2), sound_sensor.reading, light_sensor.reading
                 elif servo_pan.current_angle == 10:
                     i = 10
-                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                    pan_maesure[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2), sound_sensor.reading, light_sensor.reading
                 elif servo_pan.current_angle > 10:
                     i = int(servo_pan.current_angle/10+9)
-                pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                pan_maesure[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2), sound_sensor.reading, light_sensor.reading
                 #change current angle of servo for next measurement 
                 servo_pan.target_angle = servo_pan.current_angle + 10
             elif servo_pan.current_angle >= 81:
@@ -79,21 +84,21 @@ class process1(Thread):
                 #add Ultrasonic distance value to pan_distance array
                 if servo_pan.current_angle <= 0:
                     i = int((servo_pan.current_angle*-1)/10)
-                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                    pan_maesure[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
                 elif servo_pan.current_angle == 10:
                     i = 10
-                    pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                    pan_maesure[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
                 elif servo_pan.current_angle > 10:
                     i = int(servo_pan.current_angle/10+9)
-                pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+                pan_maesure[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
                 #change current angle of servo for next measurement
                 servo_pan.target_angle = servo_pan.current_angle - 10
             elif servo_pan.current_angle <= -81:
                 servo_pan.target_angle = -90
          elif servo_pan.current_angle == -90:
             scandirection = "left"
-        
          sleep(0.25)
+         degree,range,noise,light=list(zip(*pan_maesure))
 
     def stop(self):
         self.running = False
@@ -171,7 +176,8 @@ class process3(Thread):
         if drive_logic == 1:
             print("discover terrain - look for the best way")
             print("Break 5 sec")
-            print(pan_distance)
+            print('space right:',sum(range[1:8])/8)
+            print('space left:',sum(range[9:18])/8)
             sleep(5)
 
 
