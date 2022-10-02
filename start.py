@@ -41,11 +41,7 @@ servo_settings.speed = 50
 servo_pan.target_angle = 0
 servo_tilt.target_angle = 20
 #set default array for head ultrasonic maesurements from -90, -80.... 0, 10, 20.... 90 (19valuess)
-pan_maesure = [(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),(0, 0, 0, 0),]
-degree = []
-range = []
-noise = []
-light = []
+pan_maesure, degree, range, noise, light = [0] * 19 
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 drive_logic = int(drive_logic)
