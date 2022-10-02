@@ -21,6 +21,7 @@ elif drive_left < 0:
     lc = motor_left.rotation_counter - drive_left
 elif drive_left == 0:
     lc = motor_left.rotation_counter = drive_left
+print(lc)
 
 if drive_right > 0:
     rc = motor_right.rotation_counter + drive_right
@@ -28,6 +29,7 @@ elif drive_right < 0:
     rc = motor_right.rotation_counter - drive_right
 elif drive_right == 0:
     rc = motor_right.rotation_counter = drive_right
+print(rc)
 
 turn = True
 
