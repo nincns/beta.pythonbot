@@ -178,15 +178,22 @@ class process3(Thread):
             degree,range,noise,light=list(zip(*pan_maesure))
             print('space right:',sum(range[1:8])/8)
             print('space left:',sum(range[9:18])/8)
-            print(pan_maesure)
             sleep(5)
 
 
-            self.turnforward = True
+            #self.turnforward = True
         elif drive_logic == 2:
             print("search for noise - look for sources of noise")
+            print("Break 5 sec")
+            degree,range,noise,light=list(zip(*pan_maesure))
+            print('space right:',sum(noise[1:8])/8)
+            print('space left:',sum(noise[9:18])/8)
         elif drive_logic == 3:
             print("search for light - look for bright sources and lights")
+            print("Break 5 sec")
+            degree,range,noise,light=list(zip(*pan_maesure))
+            print('space right:',sum(light[1:8])/8)
+            print('space left:',sum(light[9:18])/8)
 
 class process4(Thread):
     def __init__(self):
