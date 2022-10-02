@@ -33,4 +33,4 @@ while turn_left is True:
         motor_left.stop()
         turn_left = False
      print(motor_left.rotation_counter)
-     sleep(0.1)
+     #sleep(0.1)
