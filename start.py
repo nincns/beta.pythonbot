@@ -117,7 +117,7 @@ class process2(Thread):
             time_now = time.strftime("%Y%m%d-%H%M%S")
             if round(ultrasonic_front.distance.real, 2) < 0.75 and self.scan is True:
                 MovePiTop.reducespeed()
-                MoveServoX.pause()
+                MoveServoPan.pause()
                 servo_pan.target_angle = 0
                 servo_tilt.target_angle = 0
                 sleep(2)
@@ -126,7 +126,7 @@ class process2(Thread):
                 image.save("pictures/pitop_"+time_now+".jpg")
                 servo_tilt.target_angle = 20
                 sleep(2)
-                MoveServoX.resume()
+                MoveServoPan.resume()
                 MovePiTop.analyse()
             time.sleep(1)
     def stop(self):
@@ -152,7 +152,6 @@ class process3(Thread):
             elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
-            print(pan_distance)
             sleep(5)
 
     def stop(self):
@@ -176,8 +175,8 @@ class process3(Thread):
         if drive_logic == 1:
             print("discover terrain - look for the best way")
             print("Break 5 sec")
-            print('space right:',sum(range[1:8])/8)
-            print('space left:',sum(range[9:18])/8)
+            #print('space right:',sum(range[1:8])/8)
+            #print('space left:',sum(range[9:18])/8)
             sleep(5)
 
 
