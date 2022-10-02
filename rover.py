@@ -4,13 +4,12 @@ from pitop.labs.web.blueprints.rover import drive_handler, pan_tilt_handler
 from pitop import LED
 from threading import Thread
 import time
+from time import sleep
 
 led_left = LED("D0")
 led_right = LED("D7")
 
 rover = Pitop()
-
-
 
 class process1(Thread):
     def __init__(self):
