@@ -2,12 +2,18 @@ from pitop import Camera, DriveController, PanTiltController, Pitop
 from pitop.labs import RoverWebController
 from pitop.labs.web.blueprints.rover import drive_handler, pan_tilt_handler
 from pitop import LED
+from pitop import UltrasonicSensor
+from pitop import SoundSensor
+from pitop import LightSensor
 from threading import Thread
 import time
 from time import sleep
 
 led_left = LED("D0")
 led_right = LED("D7")
+ultrasonic_head = UltrasonicSensor("D4")
+sound_sensor = SoundSensor("A3")
+light_sensor = LightSensor("A1")
 
 rover = Pitop()
 
@@ -55,8 +61,22 @@ class process2(Thread):
     def stop(self):
         self.running = False
 
+class process3(Thread):
+    def __init__(self):
+        Thread.__init__(self)
+        self.running = True
+
+    def run(self):
+        while self.running:
+            print("distance ", round(ultrasonic_head.distance.real, 2), "noise ", sound_sensor.reading, "light ", light_sensor.reading)
+            sleep(2)
+    def stop(self):
+        self.running = False
+
 Rover = process1()
 YellowBeacon = process2()
+Measurement = process3()
 
 Rover.start()
 YellowBeacon.start()
+Measurement.start()
