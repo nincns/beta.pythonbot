@@ -68,7 +68,7 @@ class process3(Thread):
 
     def run(self):
         while self.running:
-            print("distance:", round(ultrasonic_head.distance.real, 2), "m - noise:", sound_sensor.reading, " - light:", light_sensor.reading)
+            print("distance:", round(ultrasonic_head.distance.real, 2), "m - noise:", sound_sensor.reading, "- light:", light_sensor.reading)
             sleep(3)
     def stop(self):
         self.running = False
