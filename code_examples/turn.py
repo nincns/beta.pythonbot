@@ -23,6 +23,7 @@ elif drive_left == 0:
 turn_left = True
 
 while turn_left is True:
+     print(lc)
      if lc != motor_left.rotation_counter:
         if drive_left > 0:
             motor_left.set_power(turnspeed)
@@ -34,3 +35,4 @@ while turn_left is True:
         motor_left.stop()
         turn_left is False
      print(motor_left.rotation_counter)
+     sleep(0.1)
