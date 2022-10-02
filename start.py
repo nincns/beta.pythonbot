@@ -72,7 +72,6 @@ class process1(Thread):
                 servo_pan.target_angle = -90
          elif servo_pan.current_angle == -90:
             scandirection = "left"
-         sleep(0.25)
         
          if servo_pan.current_angle <= 0:
             i = int((servo_pan.current_angle*-1)/10)
@@ -83,6 +82,7 @@ class process1(Thread):
          elif servo_pan.current_angle > 10:
             i = int(servo_pan.current_angle/10+9)
             pan_distance[i] = servo_pan.current_angle, round(ultrasonic_head.distance.real, 2)
+         sleep(0.25)
 
     def stop(self):
         self.running = False
