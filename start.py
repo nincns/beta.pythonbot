@@ -153,7 +153,6 @@ class process3(Thread):
                 motor_right.stop()
                 motor_left.stop()
             sleep(5)
-
     def stop(self):
         self.running = False
     def pause(self):
@@ -180,9 +179,10 @@ class process3(Thread):
             print('space right:',sum(range[1:8])/8)
             print('space left:',sum(range[9:18])/8)
             sleep(5)
-
-
-            #self.turnforward = True
+            if sum(range[1:8])/8 > sum(range[9:18])/8:
+                MovePiTop.right()
+            elif sum(range[1:8])/8 < sum(range[9:18])/8:
+                MovePiTop.left()
         elif drive_logic == 2:
             print("search for noise - look for sources of noise")
             print("Break 5 sec")
