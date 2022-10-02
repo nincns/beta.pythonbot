@@ -16,6 +16,7 @@ drive_left = float(drive_left)
 if drive_left > 0:
     lc = float(motor_left.rotation_counter) + drive_left
 elif drive_left < 0:
+    drive_left = drive_left*-1
     lc = float(motor_left.rotation_counter) - drive_left
 elif drive_left == 0:
     lc = float(motor_left.rotation_counter)
