@@ -24,8 +24,8 @@ motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
 motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
 motor_right.breaking_type = BrakingType.COAST
 motor_left.breaking_type = BrakingType.COAST
-motor_right.wheel_diameter=0.045
-motor_left.wheel_diameter=0.045
+motor_right.wheel_diameter=0.05
+motor_left.wheel_diameter=0.05
 #drive settings input
 turnspeed = input("set turnspeed (0.2-1.0): ")
 turnspeed = float(turnspeed)
