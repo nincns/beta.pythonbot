@@ -12,6 +12,8 @@ turnspeed = 0.2
 
 drive_left = input("set drivedistance left: ")
 drive_left = float(drive_left)
+drive_right = input("set drivedistance right: ")
+drive_right = float(drive_right)
 
 if drive_left > 0:
     lc = motor_left.rotation_counter + drive_left
@@ -21,16 +23,31 @@ elif drive_left < 0:
 elif drive_left == 0:
     lc = motor_left.rotation_counter
 
-turn_left = True
+if drive_right > 0:
+    rc = motor_right.rotation_counter + drive_right
+elif drive_right < 0:
+    drive_right = drive_right*-1
+    rc = motor_right.rotation_counter - drive_right
+elif drive_right == 0:
+    rc = motor_right.rotation_counter
 
-while turn_left is True:
-     print(lc)
+turn = True
+
+while turn is True:
      if lc > motor_left.rotation_counter:
         motor_left.set_power(turnspeed)
      if lc < motor_left.rotation_counter:
         motor_left.set_power(turnspeed*-1)
      if lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
         motor_left.stop()
-        turn_left = False
-     print(motor_left.rotation_counter)
-     #sleep(0.1)
+    
+     if rc > motor_right.rotation_counter:
+        motor_right.set_power(turnspeed)
+     if rc < motor_right.rotation_counter:
+        motor_right.set_power(turnspeed*-1)
+     if rc+0.1 > motor_right.rotation_counter and lc-0.1<motor_right.rotation_counter:
+        motor_right.stop()
+     if motor_left.current_rpm == motor_right.current_rpm:
+        turn = False
+
+
