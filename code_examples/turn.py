@@ -49,7 +49,7 @@ while turn is True:
      if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter:
         motor_right.stop()
      if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
-        print("arived")
+        print("arrived")
         turn = False
 
 
