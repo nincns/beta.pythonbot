@@ -21,16 +21,14 @@ drive_right = float(drive_right)
 if drive_left > 0:
     lc = motor_left.rotation_counter + drive_left
 elif drive_left < 0:
-    drive_left = drive_left*-1
-    lc = motor_left.rotation_counter - drive_left
+    lc = motor_left.rotation_counter - drive_left*-1
 elif drive_left == 0:
     lc = motor_left.rotation_counter
 
 if drive_right > 0:
     rc = motor_right.rotation_counter + drive_right
 elif drive_right < 0:
-    drive_right = drive_right*-1
-    rc = motor_right.rotation_counter - drive_right
+    rc = motor_right.rotation_counter - drive_right*-1
 elif drive_right == 0:
     rc = motor_right.rotation_counter
 
@@ -50,6 +48,7 @@ while turn is True:
         motor_right.set_power(turnspeed_right*-1)
      if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter:
         motor_right.stop()
+
      if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
         print("arrived")
         turn = False

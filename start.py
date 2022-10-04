@@ -164,12 +164,9 @@ class process3(Thread):
             motor_left.set_power(turnspeed)
     def resume(self):
         self.turnforward = True
-    def left(self):
-        print("turn to the left side")
-        #PiTop turn 10 degree to left side
-    def right(self):
-        print("turn to the right side")
-        #PiTop turn 10 degree to right side
+    def turn(self):
+        print("turn pi-top")
+        #PiTop turn
     def analyse(self):
         print("analyse moving direction")
         if drive_logic == 1:
