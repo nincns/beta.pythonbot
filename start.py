@@ -120,7 +120,6 @@ class process2(Thread):
                 servo_pan.target_angle = 0
                 servo_tilt.target_angle = 0
                 sleep(2)
-                MovePiTop.pause()
                 image = cam.get_frame()
                 image.save("pictures/pitop_"+time_now+".jpg")
                 servo_tilt.target_angle = 20
@@ -157,8 +156,7 @@ class process3(Thread):
             elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
-
-        sleep(0.1)
+            sleep(0.5)
     def stop(self):
         self.running = False
     def pause(self):
