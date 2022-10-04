@@ -114,7 +114,7 @@ class process2(Thread):
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
-            if round(ultrasonic_front.distance) < 0.75 and self.scan is True:
+            if round(ultrasonic_front.distance) < 1 and self.scan is True:
                 print(ultrasonic_front.distance)
                 MovePiTop.reducespeed()
                 MoveServoPan.pause()
@@ -219,7 +219,7 @@ class process3(Thread):
                 self.dtr = 0.9
                 self.turnleftright = True
                 MovePiTop.turn()
-            elif sum(range[1:8])/8 < sum(range[9:18])/8:
+            if sum(range[1:8])/8 < sum(range[9:18])/8:
                 #drive left direction
                 self.tsl = 0.2
                 self.tsr = 0.4
