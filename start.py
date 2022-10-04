@@ -214,16 +214,16 @@ class process3(Thread):
                 #drive right direction
                 self.tsl = 0.4
                 self.tsr = 0.2
-                self.dtl = 3.6
-                self.dtr = 1.8
+                self.dtl = 1.8
+                self.dtr = 0.9
                 self.turnleftright = True
                 MovePiTop.turn()
             elif sum(range[1:8])/8 < sum(range[9:18])/8:
                 #drive left direction
                 self.tsl = 0.2
                 self.tsr = 0.4
-                self.dtl = 1.8
-                self.dtr = 3.6
+                self.dtl = 0.9
+                self.dtr = 1.8
                 self.turnleftright = True
                 MovePiTop.turn()
         elif drive_logic == 2:
