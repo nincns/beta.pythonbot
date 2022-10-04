@@ -51,7 +51,6 @@ tsl = 0
 tsr = 0
 dtl = 0
 dtr = 0
-turnleftright = False
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 drive_logic = int(drive_logic)
@@ -185,7 +184,7 @@ class process3(Thread):
         elif dtr == 0:
             rc = motor_right.rotation_counter
         print(dtl, lc, dtr, rc)
-        while turnleftright is True:
+        while self.turnleftright is True:
             if lc > motor_left.rotation_counter:
                 motor_left.set_power(tsl)
             if lc < motor_left.rotation_counter:
@@ -202,7 +201,7 @@ class process3(Thread):
 
             if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
                 print("arrived End programm")
-                turnleftright = False
+                self.turnleftright = False
         
     def analyse(self):
         print("analyse moving direction")
@@ -219,6 +218,7 @@ class process3(Thread):
                 tsr = 0.2
                 dtl = 3.6
                 dtr = 1.8
+                self.turnleftright = True
                 MovePiTop.turn()
             elif sum(range[1:8])/8 < sum(range[9:18])/8:
                 #drive left direction
@@ -226,6 +226,7 @@ class process3(Thread):
                 tsr = 0.4
                 dtl = 1.8
                 dtr = 3.6
+                self.turnleftright = True
                 MovePiTop.turn()
         elif drive_logic == 2:
             print("search for noise - look for sources of noise")
