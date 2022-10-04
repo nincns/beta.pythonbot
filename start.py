@@ -115,9 +115,7 @@ class process2(Thread):
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
-            if ultrasonic_front.distance < 0.75 and self.scan is True:
-                print("something ahead", ultrasonic_front.distance)
-                MovePiTop.reducespeed()
+            if ultrasonic_front.distance < 0.75 and self.scan is True:   
                 MoveServoPan.pause()
                 servo_pan.target_angle = 0
                 servo_tilt.target_angle = 0
@@ -127,8 +125,7 @@ class process2(Thread):
                 image.save("pictures/pitop_"+time_now+".jpg")
                 servo_tilt.target_angle = 20
                 sleep(1)
-                MoveServoPan.resume()
-                MovePiTop.analyse()
+                MoveServoPan.resume()            
     def stop(self):
         self.running = False
     def pause(self):
@@ -148,9 +145,15 @@ class process3(Thread):
         self.dtr = 0
     def run(self):
         while self.running: #running process 3
-            if self.turnforward is True:
+            if self.turnforward is True and ultrasonic_front.distance > 0.75:
                 motor_right.set_power(drivespeed)
                 motor_left.set_power(drivespeed)
+
+            if ultrasonic_front.distance < 0.75:
+                print("something ahead", ultrasonic_front.distance)
+                MovePiTop.reducespeed()
+                MovePiTop.analyse()
+
             elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
