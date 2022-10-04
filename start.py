@@ -114,7 +114,7 @@ class process2(Thread):
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
-            if ultrasonic_front.distance < 1 and self.scan is True:
+            if ultrasonic_front.distance < 0.5 and self.scan is True:
                 print("something ahead", ultrasonic_front.distance)
                 MovePiTop.reducespeed()
                 MoveServoPan.pause()
