@@ -1,55 +1,55 @@
 from pitop import BrakingType, EncoderMotor, ForwardDirection
 from time import sleep
 
-motor_right = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
-motor_left = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
-motor_right.breaking_type = BrakingType.COAST
-motor_left.breaking_type = BrakingType.COAST
-motor_right.wheel_diameter=0.05
-motor_left.wheel_diameter=0.05
+mr = EncoderMotor("M0", ForwardDirection.COUNTER_CLOCKWISE)
+ml = EncoderMotor("M3", ForwardDirection.CLOCKWISE)
+mr.breaking_type = BrakingType.COAST
+ml.breaking_type = BrakingType.COAST
+mr.wheel_diameter=0.05
+ml.wheel_diameter=0.05
 
-turnspeed_left = input("set turnspeed left 0.2 - 1.0: ")
-turnspeed_left = float(turnspeed_left)
-turnspeed_right = input("set turnspeed 0.2 - 1.0: ")
-turnspeed_right = float(turnspeed_right)
+tsl = input("set turnspeed left 0.2 - 1.0: ")
+tsl = float(tsl)
+tsr = input("set turnspeed 0.2 - 1.0: ")
+tsr = float(tsr)
 
-drive_left = input("set drivedistance left: ")
-drive_left = float(drive_left)
-drive_right = input("set drivedistance right: ")
-drive_right = float(drive_right)
+dtl = input("set dtrivedistance left: ")
+dtl = float(dtl)
+dtr = input("set dtrivedistance right: ")
+dtr = float(dtr)
 
-if drive_left > 0:
-    lc = motor_left.rotation_counter + drive_left
-elif drive_left < 0:
-    lc = motor_left.rotation_counter - drive_left*-1
-elif drive_left == 0:
-    lc = motor_left.rotation_counter
+if dtl > 0:
+    lc = ml.rotation_counter + dtl
+elif dtl < 0:
+    lc = ml.rotation_counter - dtl*-1
+elif dtl == 0:
+    lc = ml.rotation_counter
 
-if drive_right > 0:
-    rc = motor_right.rotation_counter + drive_right
-elif drive_right < 0:
-    rc = motor_right.rotation_counter - drive_right*-1
-elif drive_right == 0:
-    rc = motor_right.rotation_counter
+if dtr > 0:
+    rc = mr.rotation_counter + dtr
+elif dtr < 0:
+    rc = mr.rotation_counter - dtr*-1
+elif dtr == 0:
+    rc = mr.rotation_counter
 
 turn = True
 
 while turn is True:
-     if lc > motor_left.rotation_counter:
-        motor_left.set_power(turnspeed_left)
-     if lc < motor_left.rotation_counter:
-        motor_left.set_power(turnspeed_left*-1)
-     if lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
-        motor_left.stop()
+     if lc > ml.rotation_counter:
+        ml.set_power(tsl)
+     if lc < ml.rotation_counter:
+        ml.set_power(tsl*-1)
+     if lc+0.1 > ml.rotation_counter and lc-0.1<ml.rotation_counter:
+        ml.stop()
     
-     if rc > motor_right.rotation_counter:
-        motor_right.set_power(turnspeed_right)
-     if rc < motor_right.rotation_counter:
-        motor_right.set_power(turnspeed_right*-1)
-     if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter:
-        motor_right.stop()
+     if rc > mr.rotation_counter:
+        mr.set_power(tsr)
+     if rc < mr.rotation_counter:
+        mr.set_power(tsr*-1)
+     if rc+0.1 > mr.rotation_counter and rc-0.1<mr.rotation_counter:
+        mr.stop()
 
-     if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
+     if rc+0.1 > mr.rotation_counter and rc-0.1<mr.rotation_counter and lc+0.1 > ml.rotation_counter and lc-0.1<ml.rotation_counter:
         print("arrived")
         turn = False
 
