@@ -115,7 +115,7 @@ class process2(Thread):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
             if round(ultrasonic_front.distance) < 1 and self.scan is True:
-                print(ultrasonic_front.distance)
+                print("something ahead", ultrasonic_front.distance)
                 MovePiTop.reducespeed()
                 MoveServoPan.pause()
                 servo_pan.target_angle = 0
@@ -210,15 +210,15 @@ class process3(Thread):
             print('space right:',sum(range[1:8])/8)
             print('space left:',sum(range[9:18])/8)
             sleep(2)
-            if sum(range[1:8])/8 + sum(range[9:18])/8 < 1.5:
-                #drive u-turn direction
+            if sum(range[1:4])/4 + sum(range[10:14])/4 < 1.5:
+                #drive u-turn direction, check range in front 45degree
                 self.tsl = 0.4
                 self.tsr = 0.4
                 self.dtl = 1.6
                 self.dtr = -1.6
                 self.turnleftright = True
                 MovePiTop.turn()
-            elif sum(range[1:8])/8 > sum(range[9:18])/8:
+            elif sum(range[1:9])/8 > sum(range[10:18])/8:
                 #drive right direction
                 self.tsl = 0.4
                 self.tsr = 0.2
@@ -226,7 +226,7 @@ class process3(Thread):
                 self.dtr = 0.9
                 self.turnleftright = True
                 MovePiTop.turn()
-            elif sum(range[1:8])/8 < sum(range[9:18])/8:
+            elif sum(range[1:9])/8 < sum(range[10:18])/8:
                 #drive left direction
                 self.tsl = 0.2
                 self.tsr = 0.4
