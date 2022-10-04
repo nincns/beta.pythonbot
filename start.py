@@ -181,7 +181,7 @@ class process3(Thread):
             rc = motor_right.rotation_counter - self.dtr*-1
         elif self.dtr == 0:
             rc = motor_right.rotation_counter
-        print(self.dtl, lc, self.dtr, rc)
+
         while self.turnleftright is True:
             if lc > motor_left.rotation_counter:
                 motor_left.set_power(self.tsl)
@@ -198,8 +198,9 @@ class process3(Thread):
                 motor_right.stop()
 
             if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
-                print("arrived End programm")
                 self.turnleftright = False
+                self.turnforward = True
+                MovePiTop.run()
         
     def analyse(self):
         print("analyse moving direction")
