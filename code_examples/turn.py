@@ -10,7 +10,7 @@ ml.wheel_diameter=0.05
 
 tsl = input("set turnspeed left 0.2 - 1.0: ")
 tsl = float(tsl)
-tsr = input("set turnspeed 0.2 - 1.0: ")
+tsr = input("set turnspeed right 0.2 - 1.0: ")
 tsr = float(tsr)
 
 dtl = input("set dtrivedistance left: ")
