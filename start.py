@@ -114,8 +114,8 @@ class process2(Thread):
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
-            if round(ultrasonic_front.distance.real, 2) < 0.75 and self.scan is True:
-                print(ultrasonic_front.distance.real, 2)
+            if round(ultrasonic_front.distance) < 0.75 and self.scan is True:
+                print(ultrasonic_front.distance)
                 MovePiTop.reducespeed()
                 MoveServoPan.pause()
                 servo_pan.target_angle = 0
