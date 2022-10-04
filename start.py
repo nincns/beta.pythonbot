@@ -200,7 +200,6 @@ class process3(Thread):
                 self.turnleftright = False
                 self.turnforward = True
                 print("run")
-                MovePiTop.run()
         
     def analyse(self):
         print("analyse moving direction")
