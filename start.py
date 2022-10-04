@@ -137,7 +137,7 @@ class process3(Thread):
     def __init__(self):
         Thread.__init__(self)
         self.running = True
-        self.turnforward = True
+        self.turnforward = False
         self.turnleftright = True
         self.tsl = 0
         self.tsr = 0
@@ -157,7 +157,8 @@ class process3(Thread):
             elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
-            sleep(0.1)
+
+        sleep(0.1)
     def stop(self):
         self.running = False
     def pause(self):
@@ -203,7 +204,6 @@ class process3(Thread):
             if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
                 self.turnleftright = False
                 self.turnforward = True
-        
     def analyse(self):
         print("analyse moving direction")
         if drive_logic == 1:
@@ -249,7 +249,6 @@ class process3(Thread):
             degree,range,noise,light=list(zip(*pan_maesure))
             print('light right:',sum(light[1:8])/8)
             print('light left:',sum(light[9:18])/8)
-
 class process4(Thread):
     def __init__(self):
         Thread.__init__(self)
