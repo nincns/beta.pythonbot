@@ -1,3 +1,4 @@
+from signal import pause
 from time import sleep
 from turtle import distance
 from pitop import ServoMotor, ServoMotorSetting
@@ -125,6 +126,7 @@ class process2(Thread):
                 image = cam.get_frame()
                 image.save("pictures/pitop_"+time_now+".jpg")
                 servo_tilt.target_angle = 20
+                sleep(1)
                 MoveServoPan.resume()
                 MovePiTop.analyse()
     def stop(self):
@@ -152,7 +154,7 @@ class process3(Thread):
             elif self.turnforward is False:
                 motor_right.stop()
                 motor_left.stop()
-            sleep(5)
+            sleep(0.1)
     def stop(self):
         self.running = False
     def pause(self):
