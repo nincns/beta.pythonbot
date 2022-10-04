@@ -114,7 +114,7 @@ class process2(Thread):
     def run(self):
         while self.running: #running process 2
             time_now = time.strftime("%Y%m%d-%H%M%S")
-            if round(ultrasonic_front.distance) < 1 and self.scan is True:
+            if ultrasonic_front.distance < 1 and self.scan is True:
                 print("something ahead", ultrasonic_front.distance)
                 MovePiTop.reducespeed()
                 MoveServoPan.pause()
@@ -125,10 +125,8 @@ class process2(Thread):
                 image = cam.get_frame()
                 image.save("pictures/pitop_"+time_now+".jpg")
                 servo_tilt.target_angle = 20
-                sleep(2)
                 MoveServoPan.resume()
                 MovePiTop.analyse()
-            time.sleep(1)
     def stop(self):
         self.running = False
     def pause(self):
