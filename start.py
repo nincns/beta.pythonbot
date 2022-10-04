@@ -47,7 +47,10 @@ range  = [0] * 19
 noise  = [0] * 19 
 light  = [0] * 19 
 #turn settings
-tsl, tsr, dtl, dtr = 0
+tsl = 0
+tsr = 0
+dtl = 0
+dtr = 0
 turn = False
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
