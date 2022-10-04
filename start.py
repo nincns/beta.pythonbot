@@ -46,6 +46,9 @@ degree = [0] * 19
 range  = [0] * 19 
 noise  = [0] * 19 
 light  = [0] * 19 
+#turn settings
+tsl, tsr, dtl, dtr = 0
+turn = False
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 drive_logic = int(drive_logic)
@@ -99,7 +102,6 @@ class process1(Thread):
             scandirection = "left"
          sleep(0.25)
          
-
     def stop(self):
         self.running = False
     def pause(self):
@@ -141,8 +143,7 @@ class process3(Thread):
         Thread.__init__(self)
         self.running = True
         self.turnforward = True
-        self.turnleft = False
-        self.turnright = False
+        self.turnleftright = False
 
     def run(self):
         while self.running: #running process 3
@@ -167,6 +168,39 @@ class process3(Thread):
     def turn(self):
         print("turn pi-top")
         #PiTop turn
+        if dtl > 0:
+            lc = motor_left.rotation_counter + dtl
+        elif dtl < 0:
+            lc = motor_left.rotation_counter - dtl*-1
+        elif dtl == 0:
+            lc = motor_left.rotation_counter
+
+        if dtr > 0:
+            rc = motor_right.rotation_counter + dtr
+        elif dtr < 0:
+            rc = motor_right.rotation_counter - dtr*-1
+        elif dtr == 0:
+            rc = motor_right.rotation_counter
+
+        while turnleftright is True:
+            if lc > motor_left.rotation_counter:
+                motor_left.set_power(tsl)
+            if lc < motor_left.rotation_counter:
+                motor_left.set_power(tsl*-1)
+            if lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
+                motor_left.stop()
+    
+            if rc > motor_right.rotation_counter:
+                motor_right.set_power(tsr)
+            if rc < motor_right.rotation_counter:
+                motor_right.set_power(tsr*-1)
+            if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter:
+                motor_right.stop()
+
+            if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
+                print("arrived End programm")
+                turnleftright = False
+        
     def analyse(self):
         print("analyse moving direction")
         if drive_logic == 1:
@@ -177,9 +211,19 @@ class process3(Thread):
             print('space left:',sum(range[9:18])/8)
             sleep(5)
             if sum(range[1:8])/8 > sum(range[9:18])/8:
-                MovePiTop.right()
+                #drive right direction
+                tsl = 0.4
+                tsr = 0.2
+                dtl = 3.6
+                dtr = 1.8
+                MovePiTop.turn()
             elif sum(range[1:8])/8 < sum(range[9:18])/8:
-                MovePiTop.left()
+                #drive left direction
+                tsl = 0.2
+                tsr = 0.4
+                dtl = 1.8
+                dtr = 3.6
+                MovePiTop.turn()
         elif drive_logic == 2:
             print("search for noise - look for sources of noise")
             print("Break 5 sec")
