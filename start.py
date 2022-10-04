@@ -200,7 +200,6 @@ class process3(Thread):
             if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
                 self.turnleftright = False
                 self.turnforward = True
-                print("run")
         
     def analyse(self):
         print("analyse moving direction")
@@ -210,8 +209,8 @@ class process3(Thread):
             degree,range,noise,light=list(zip(*pan_maesure))
             print('space right:',sum(range[1:8])/8)
             print('space left:',sum(range[9:18])/8)
-            sleep(5)
-            if sum(range[1:8])/8 + sum(range[9:18])/8 < 2:
+            sleep(2)
+            if sum(range[1:8])/8 + sum(range[9:18])/8 < 1.5:
                 #drive u-turn direction
                 self.tsl = 0.4
                 self.tsr = 0.4
