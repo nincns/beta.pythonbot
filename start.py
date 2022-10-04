@@ -46,11 +46,6 @@ degree = [0] * 19
 range  = [0] * 19 
 noise  = [0] * 19 
 light  = [0] * 19 
-#turn settings
-tsl = 0
-tsr = 0
-dtl = 0
-dtr = 0
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 drive_logic = int(drive_logic)
@@ -145,8 +140,11 @@ class process3(Thread):
         Thread.__init__(self)
         self.running = True
         self.turnforward = True
-        self.turnleftright = False
-
+        self.turnleftright = True
+        self.tsl = 0
+        self.tsr = 0
+        self.dtl = 0
+        self.dtr = 0
     def run(self):
         while self.running: #running process 3
             if self.turnforward is True:
@@ -170,32 +168,32 @@ class process3(Thread):
     def turn(self):
         print("turn pi-top")
         #PiTop turn
-        if dtl > 0:
-            lc = motor_left.rotation_counter + dtl
-        elif dtl < 0:
-            lc = motor_left.rotation_counter - dtl*-1
-        elif dtl == 0:
+        if self.dtl > 0:
+            lc = motor_left.rotation_counter + self.dtl
+        elif self.dtl < 0:
+            lc = motor_left.rotation_counter - self.dtl*-1
+        elif self.dtl == 0:
             lc = motor_left.rotation_counter
 
-        if dtr > 0:
-            rc = motor_right.rotation_counter + dtr
-        elif dtr < 0:
-            rc = motor_right.rotation_counter - dtr*-1
-        elif dtr == 0:
+        if self.dtr > 0:
+            rc = motor_right.rotation_counter + self.dtr
+        elif self.dtr < 0:
+            rc = motor_right.rotation_counter - self.dtr*-1
+        elif self.dtr == 0:
             rc = motor_right.rotation_counter
-        print(dtl, lc, dtr, rc)
+        print(self.dtl, lc, self.dtr, rc)
         while self.turnleftright is True:
             if lc > motor_left.rotation_counter:
-                motor_left.set_power(tsl)
+                motor_left.set_power(self.tsl)
             if lc < motor_left.rotation_counter:
-                motor_left.set_power(tsl*-1)
+                motor_left.set_power(self.tsl*-1)
             if lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
                 motor_left.stop()
     
             if rc > motor_right.rotation_counter:
-                motor_right.set_power(tsr)
+                motor_right.set_power(self.tsr)
             if rc < motor_right.rotation_counter:
-                motor_right.set_power(tsr*-1)
+                motor_right.set_power(self.tsr*-1)
             if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter:
                 motor_right.stop()
 
@@ -214,18 +212,18 @@ class process3(Thread):
             sleep(5)
             if sum(range[1:8])/8 > sum(range[9:18])/8:
                 #drive right direction
-                tsl = 0.4
-                tsr = 0.2
-                dtl = 3.6
-                dtr = 1.8
+                self.tsl = 0.4
+                self.tsr = 0.2
+                self.dtl = 3.6
+                self.dtr = 1.8
                 self.turnleftright = True
                 MovePiTop.turn()
             elif sum(range[1:8])/8 < sum(range[9:18])/8:
                 #drive left direction
-                tsl = 0.2
-                tsr = 0.4
-                dtl = 1.8
-                dtr = 3.6
+                self.tsl = 0.2
+                self.tsr = 0.4
+                self.dtl = 1.8
+                self.dtr = 3.6
                 self.turnleftright = True
                 MovePiTop.turn()
         elif drive_logic == 2:
