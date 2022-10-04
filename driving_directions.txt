@@ -1,0 +1,7 @@
+direction           |   left-right speed    |   left-right distance
+turn left-right 45  |   0.2 0.4             |   0.9 1.8
+turn left-right 90  |   0.2 0.4             |   1.8 3.6
+45° turn            |   0.4 0.4             |   0.4 -0.4
+90° turn            |   0.4 0.4             |   0.8 -0.8
+U-turn              |   0.4 0.4             |   1.6 - 1.6
+
