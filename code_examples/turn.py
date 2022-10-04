@@ -39,17 +39,17 @@ while turn is True:
         ml.set_power(tsl)
      if lc < ml.rotation_counter:
         ml.set_power(tsl*-1)
-     if lc+0.1 > ml.rotation_counter and lc-0.1<ml.rotation_counter:
+     if lc+0.01 > ml.rotation_counter and lc-0.01<ml.rotation_counter:
         ml.stop()
     
      if rc > mr.rotation_counter:
         mr.set_power(tsr)
      if rc < mr.rotation_counter:
         mr.set_power(tsr*-1)
-     if rc+0.1 > mr.rotation_counter and rc-0.1<mr.rotation_counter:
+     if rc+0.01 > mr.rotation_counter and rc-0.01<mr.rotation_counter:
         mr.stop()
 
-     if rc+0.1 > mr.rotation_counter and rc-0.1<mr.rotation_counter and lc+0.1 > ml.rotation_counter and lc-0.1<ml.rotation_counter:
+     if rc+0.01 > mr.rotation_counter and rc-0.01<mr.rotation_counter and lc+0.01 > ml.rotation_counter and lc-0.01<ml.rotation_counter:
         print("arrived")
         turn = False
 
