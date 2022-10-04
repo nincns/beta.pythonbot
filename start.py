@@ -166,7 +166,6 @@ class process3(Thread):
     def resume(self):
         self.turnforward = True
     def turn(self):
-        print("turn pi-top")
         #PiTop turn
         if self.dtl > 0:
             lc = motor_left.rotation_counter + self.dtl
@@ -200,6 +199,7 @@ class process3(Thread):
             if rc+0.1 > motor_right.rotation_counter and rc-0.1<motor_right.rotation_counter and lc+0.1 > motor_left.rotation_counter and lc-0.1<motor_left.rotation_counter:
                 self.turnleftright = False
                 self.turnforward = True
+                print("run")
                 MovePiTop.run()
         
     def analyse(self):
