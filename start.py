@@ -184,7 +184,7 @@ class process3(Thread):
             rc = motor_right.rotation_counter - dtr*-1
         elif dtr == 0:
             rc = motor_right.rotation_counter
-
+        print(dtl, lc, dtr, rc)
         while turnleftright is True:
             if lc > motor_left.rotation_counter:
                 motor_left.set_power(tsl)
