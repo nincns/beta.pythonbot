@@ -211,7 +211,15 @@ class process3(Thread):
             print('space right:',sum(range[1:8])/8)
             print('space left:',sum(range[9:18])/8)
             sleep(5)
-            if sum(range[1:8])/8 > sum(range[9:18])/8:
+            if sum(range[1:8])/8 + sum(range[9:18])/8 < 2:
+                #drive u-turn direction
+                self.tsl = 0.4
+                self.tsr = 0.4
+                self.dtl = 1.6
+                self.dtr = -1.6
+                self.turnleftright = True
+                MovePiTop.turn()
+            elif sum(range[1:8])/8 > sum(range[9:18])/8:
                 #drive right direction
                 self.tsl = 0.4
                 self.tsr = 0.2
@@ -219,7 +227,7 @@ class process3(Thread):
                 self.dtr = 0.9
                 self.turnleftright = True
                 MovePiTop.turn()
-            if sum(range[1:8])/8 < sum(range[9:18])/8:
+            elif sum(range[1:8])/8 < sum(range[9:18])/8:
                 #drive left direction
                 self.tsl = 0.2
                 self.tsr = 0.4
