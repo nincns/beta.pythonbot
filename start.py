@@ -51,7 +51,7 @@ tsl = 0
 tsr = 0
 dtl = 0
 dtr = 0
-turn = False
+turnleftright = False
 #input drive logic
 drive_logic = input("please type programm number (1 = discover terrain, 2 = find noise, 3 = find light): ")
 drive_logic = int(drive_logic)
